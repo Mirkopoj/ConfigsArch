@@ -1,3 +1,18 @@
+shi|shift|around
+nue|nueva|rust-client
+|next|rust-client
+nu|nueva|rust-client
+lis|lista|rust-client
+ne|nueva|rust-client
+tam|tam|rust-client
+lista|lista|rust-client
+u|usize|rust-client
+lis|lista|around
+fru|fru|around
+sta|static|around
+static|static|around
+pr|prv_pag|rust-client
+prv_|prv_pag|rust-client
 p|println!|rust-client
 des|desorden|rust-client
 heapi|heapify_up|rust-client
@@ -7,7 +22,6 @@ l|lista|rust-client
 he|heap|rust-client
 fi|fin_desorden|rust-client
 to|to_vec|around
-lis|lista|rust-client
 h|heapify_down|rust-client
 ul|ultimo|rust-client
 us|usize|rust-client
@@ -19,8 +33,6 @@ po|pos_padre|rust-client
 fin_|fin_desorden|rust-client
 f|fin_desorden|rust-client
 he|heap_pop|rust-client
-lista|lista|rust-client
-u|usize|rust-client
 mak|make_heap|rust-client
 po|pos_hijo_max|rust-client
 po|pos_hijo_der|rust-client
@@ -73,7 +85,6 @@ Sen|Seno|around
 U|Unos|around
 F|FCajon|around
 Ca|Cajon|around
-lis|lista|around
 piv|pivot|around
 qui|quick_sort|around
 pi|pivot|around
