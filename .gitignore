@@ -1,0 +1,10 @@
+QtProject.conf
+SEGGER/
+dconf/
+flameshot/
+jxbrowser/
+kicad/
+libreoffice/
+resilio-sync/
+rslsync/
+systemd/

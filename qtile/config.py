@@ -181,6 +181,7 @@ screens = [
             opacity=0.7
         ),
     ),
+    Screen(),
 ]
 
 # Drag floating layouts.
