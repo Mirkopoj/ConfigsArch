@@ -92,11 +92,16 @@ keys = [
 ]
 
 __groups = {
-    1: Group("TERMINALES"),
-    2: Group("WEB",         matches=[Match(wm_class=["firefox"  ])]),
-    3: Group("ELECTRONICA", matches=[Match(wm_class=["kicad"    ])]),
-    4: Group("DEVELOPMENT", matches=[Match(wm_class=["mplab_ide"])]),
-    0: Group("MUSICA")
+    1: Group(""),
+    2: Group("爵",matches=[Match(wm_class=["firefox"  ])]),
+    3: Group("", matches=[Match(wm_class=["kicad"    ])]),
+    4: Group("", matches=[Match(wm_class=["mplab_ide"])]),
+    0: Group("")
+    #1: Group("TERMINALES"),
+    #2: Group("WEB",         matches=[Match(wm_class=["firefox"  ])]),
+    #3: Group("ELECTRONICA", matches=[Match(wm_class=["kicad"    ])]),
+    #4: Group("DEVELOPMENT", matches=[Match(wm_class=["mplab_ide"])]),
+    #0: Group("MUSICA")
 }
 
 groups = [__groups[i] for i in __groups]
@@ -146,7 +151,8 @@ layouts = [
 ]
 
 widget_defaults = dict(
-    font="Iosevka",
+    #font="Iosevka",
+    font="BigBlue_Terminal_437TT Nerd Font Mono",
     fontsize=15,
     padding=6,
 )
@@ -159,7 +165,7 @@ screens = [
     Screen(
         bottom=bar.Bar(
             [
-                widget.GroupBox(this_current_screen_border='a9ded7'),
+                widget.GroupBox(this_current_screen_border='a9ded7',fontsize = 25),
                 widget.Prompt(),
                 widget.WindowName(),
                 widget.Chord(
@@ -169,13 +175,14 @@ screens = [
                     name_transform=lambda name: name.upper(),
                 ),
                 widget.CheckUpdates(colour_have_updates='00ff00'),
-                widget.Net(interface='wlp1s0'),
-                widget.Battery(format='Bat: {percent:2.0%}'),
-                widget.Volume(fmt='Vol: {}'),
+                #widget.CryptoTicker(currency='USD', crypto = 'ADA'),
+                widget.TextBox(text="", fontsize = 25, padding = 0),
+                widget.Net(format=":{down} ↓↑ {up}"),
+                widget.Battery(format=' : {percent:2.0%}'),
+                widget.TextBox(text=" 墳", fontsize = 25, padding = 0),
+                widget.Volume(fmt=': {}'),
                 widget.Systray(),
-                widget.Clock(format="%H:%M %a %d/%m/%Y %p"),
-                #widget.Clock(format="%Y-%m-%d %a %I:%M %p"),
-                #widget.QuickExit(),
+                widget.Clock(format=" %H:%M %a %d/%m/%Y %p"),
             ],
             24,
             opacity=0.7

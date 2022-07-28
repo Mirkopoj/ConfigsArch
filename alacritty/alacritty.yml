@@ -67,7 +67,7 @@ window:
   #
   # Window opacity as a floating point number from `0.0` to `1.0`.
   # The value `0.0` is completely transparent and `1.0` is opaque.
-  opacity: 0.85
+  opacity: 0.9
 
   # Startup Mode (changes require restart)
   #
@@ -117,7 +117,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: Iosevka
+    #family: Iosevka
+    family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Regular
@@ -129,7 +130,8 @@ font:
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    family: Iosevka
+    #family: Iosevka
+    family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold
@@ -141,7 +143,8 @@ font:
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    family: Iosevka
+    #family: Iosevka
+    family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Italic
@@ -153,7 +156,8 @@ font:
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
     #family: monospace
-    family: Iosevka
+    #family: Iosevka
+    family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
     style: Bold Italic
@@ -192,7 +196,7 @@ font:
 #draw_bold_text_with_bright_colors: false
 
 # Colors (Tomorrow Night)
-colors:
+#colors:
   # Default colors
   #primary:
   #  background: '#1d1f21'
@@ -251,9 +255,6 @@ colors:
     # Allowed values are CellForeground/CellBackground, which reference the
     # affected cell, or hexadecimal colors like #ff00ff.
     #start:
-    #  foreground: '#1d1f21'
-    #  background: '#e9ff5e'
-
     # All characters after the first one in the hint label
     #
     # Allowed values are CellForeground/CellBackground, which reference the
@@ -292,16 +293,15 @@ colors:
   #  magenta: '#b294bb'
   #  cyan:    '#8abeb7'
   #  white:   '#c5c8c6'
-
   # Bright colors
-  bright:
+  #bright:
   #  black:   '#666666'
   #  red:     '#d54e53'
   #  green:   '#b9ca4a'
   #  yellow:  '#e7c547'
   #  blue:    '#7aa6da'
   #  magenta: '#c397d8'
-    cyan:    '#8abeb7'
+  #  cyan:    '#8abeb7'
   #  white:   '#eaeaea'
 
   # Dim colors
@@ -395,6 +395,9 @@ colors:
     #   - | Beam
     #shape: Block
 
+    # Cursor blinking state
+    #
+    # Values for `blinking`:
     # Cursor blinking state
     #
     # Values for `blinking`:
@@ -839,9 +842,6 @@ colors:
 
   # (macOS only)
   #- { key: K,              mods: Command, mode: ~Vi|~Search, chars: "\x0c"                 }
-  #- { key: K,              mods: Command, mode: ~Vi|~Search, action: ClearHistory          }
-  #- { key: Key0,           mods: Command,                    action: ResetFontSize         }
-  #- { key: Equals,         mods: Command,                    action: IncreaseFontSize      }
   #- { key: Plus,           mods: Command,                    action: IncreaseFontSize      }
   #- { key: NumpadAdd,      mods: Command,                    action: IncreaseFontSize      }
   #- { key: Minus,          mods: Command,                    action: DecreaseFontSize      }

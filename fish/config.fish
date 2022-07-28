@@ -4,6 +4,8 @@ else
 	neofetch --ascii_colors 14 37 --colors 14 7 7 14 7 7 --bar_colors 7 14
 end
 
+set -gx EDITOR nvim
+
 #ALIASES
 
 alias log "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
@@ -13,7 +15,7 @@ alias lc "exa | egrep '\.(c|h|cpp|rs|py|cu)\$'"
 #FUNCTIONS
 
 function dispDup --wraps='xrandr --output HDMI2 --auto --noprimary' --description 'alias dispDup=xrandr --output HDMI2 --auto --noprimary'
-  xrandr --output HDMI2 --auto --noprimary; 
+  xrandr --output HDMI2 --auto --noprimary $argv; 
   qtile cmd-obj -o cmd -f reload_config;
 end
 
