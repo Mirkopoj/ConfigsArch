@@ -17,20 +17,22 @@ Plug 'https://github.com/neoclide/coc.nvim'  " Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/mg979/vim-visual-multi' " CTRL + N for multiple cursors
-Plug 'https://github.com/nvim-treesitter/nvim-treesitter' "Sintax highlighting
+Plug 'https://github.com/nvim-treesitter/nvim-treesitter',{'do': 'TSUpdate'} "Sintax highlighting
 
 call plug#end()
 
 lua << luant
 require'nvim-treesitter.configs'.setup {
   -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  ensure_installed = "maintained",
+  -- ensure_installed = "maintained",
 
-  -- Install languages synchronously (only applied to `ensure_installed`)
+  -- Install languages syhronously (only applied to `ensure_installed`)
   sync_install = false,
 
+  auto_install = true,
+
   -- List of parsers to ignore installing
-  ignore_install = { "javascript" },
+  --ignore_install = { "javascript" },
 
   highlight = {
     -- `false` will disable the whole extension
