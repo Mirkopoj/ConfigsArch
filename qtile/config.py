@@ -35,7 +35,7 @@ import os
 
 autostart = [
     "setxkbmap es",
-    "feh --bg-scale /home/mirko/.config/qtile/Fondo.jpg"
+    "feh --bg-scale /home/mirko/.config/qtile/Fondo.jpg",
 ]
 
 for x in autostart:
@@ -82,13 +82,17 @@ keys = [
     Key([mod], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([mod, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([mod, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
-    #Key([mod], "r", lazy.spawncmd(), desc="Spawn a command using a prompt widget"),
     Key([mod], "r", lazy.spawn("rofi -show run"), desc="Spawn a command using a prompt widget"),
     Key([mod, "shift"], "s", lazy.spawn("flameshot"), desc="Spawn a command using a prompt widget"),
 
     Key([], "XF86AudioMute",        lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),
+
+    Key([mod], "F2", lazy.spawn("/home/mirko/.config/qtile/toggle_touchpad.fish")),
+
+    Key([mod], "c", lazy.spawn(terminal+" -e calcurse"), desc="Launch calcurse"),
+    Key([mod], "m", lazy.spawn(terminal+" -e neomutt"), desc="Launch neomutt"),
 ]
 
 __groups = {
@@ -97,11 +101,6 @@ __groups = {
     3: Group("", matches=[Match(wm_class=["kicad"    ])]),
     4: Group("", matches=[Match(wm_class=["mplab_ide"])]),
     0: Group("")
-    #1: Group("TERMINALES"),
-    #2: Group("WEB",         matches=[Match(wm_class=["firefox"  ])]),
-    #3: Group("ELECTRONICA", matches=[Match(wm_class=["kicad"    ])]),
-    #4: Group("DEVELOPMENT", matches=[Match(wm_class=["mplab_ide"])]),
-    #0: Group("MUSICA")
 }
 
 groups = [__groups[i] for i in __groups]

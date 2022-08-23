@@ -6,13 +6,15 @@ if test "$VIMRUNTIME" != "/usr/share/nvim/runtime"
 	end
 end
 
+#set -gx GPG_TTY $TERM
 set -gx EDITOR nvim
 
 #ALIASES
 
 alias log "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
+alias la "exa --group-directories-first -a"
 alias ls "exa --group-directories-first"
-alias lc "exa | egrep '\.(c|h|cpp|rs|py|cu)\$'"
+alias lc "exa | egrep '\.(c|h|cpp|rs|py|cu|s)\$'"
 
 #FUNCTIONS
 
@@ -30,3 +32,13 @@ function dispOff --wraps='--output HDMI2 --off' --wraps='xrandr --output HDMI2 -
   xrandr --output HDMI2 --off $argv; 
   qtile cmd-obj -o cmd -f reload_config;
 end
+
+function toggle_touchpad
+	set touchpad_state (xinput list-props SYNA3602:00\ 0911:5288\ Touchpad | grep Device\ Enabled)
+	if string match '*1' $touchpad_state
+		xinput disable SYNA3602:00\ 0911:5288\ Touchpad;
+	else
+		xinput enable SYNA3602:00\ 0911:5288\ Touchpad;
+	end
+end
+
