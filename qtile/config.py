@@ -34,7 +34,7 @@ from libqtile.lazy import lazy
 import os
 
 autostart = [
-    "setxkbmap es",
+    "setxkbmap latam",
     "feh --bg-scale /home/mirko/.config/qtile/Fondo.jpg",
 ]
 
@@ -89,10 +89,8 @@ keys = [
     Key([], "XF86AudioLowerVolume", lazy.spawn("amixer -c 0 sset Master 1- unmute")),
     Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer -c 0 sset Master 1+ unmute")),
 
-    Key([mod], "F2", lazy.spawn("/home/mirko/.config/qtile/toggle_touchpad.fish")),
-
     Key([mod], "c", lazy.spawn(terminal+" -e calcurse"), desc="Launch calcurse"),
-    Key([mod], "m", lazy.spawn(terminal+" -e neomutt"), desc="Launch neomutt"),
+    Key([mod], "m", lazy.spawn(terminal+" -e /home/mirko/.config/qtile/neomutt.sh"), desc="Launch neomutt"),
 ]
 
 __groups = {
@@ -177,7 +175,6 @@ screens = [
                 #widget.CryptoTicker(currency='USD', crypto = 'ADA'),
                 widget.TextBox(text="", fontsize = 25, padding = 0),
                 widget.Net(format=":{down} ↓↑ {up}"),
-                widget.Battery(format=' : {percent:2.0%}'),
                 widget.TextBox(text=" 墳", fontsize = 25, padding = 0),
                 widget.Volume(fmt=': {}'),
                 widget.Systray(),

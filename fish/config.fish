@@ -17,29 +17,3 @@ alias ls "exa --group-directories-first"
 alias lc "exa | egrep '\.(c|h|cpp|rs|py|cu|s)\$'"
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
-
-#FUNCTIONS
-
-function dispDup --wraps='xrandr --output HDMI2 --auto --noprimary' --description 'alias dispDup=xrandr --output HDMI2 --auto --noprimary'
-  xrandr --output HDMI2 --auto --noprimary $argv; 
-  qtile cmd-obj -o cmd -f reload_config;
-end
-
-function dispExp --wraps='xrandr --output HDMI2 --auto --noprimary --left-of eDP1' --description 'alias dispExp=xrandr --output HDMI2 --auto --noprimary --left-of eDP1'
-  xrandr --output HDMI2 --auto --noprimary --left-of eDP1 $argv; 
-  qtile cmd-obj -o cmd -f reload_config;
-end
-
-function dispOff --wraps='--output HDMI2 --off' --wraps='xrandr --output HDMI2 --off' --description 'alias dispOff=xrandr --output HDMI2 --off'
-  xrandr --output HDMI2 --off $argv; 
-  qtile cmd-obj -o cmd -f reload_config;
-end
-
-function toggle_touchpad
-	set touchpad_state (xinput list-props SYNA3602:00\ 0911:5288\ Touchpad | grep Device\ Enabled)
-	if string match '*1' $touchpad_state
-		xinput disable SYNA3602:00\ 0911:5288\ Touchpad;
-	else
-		xinput enable SYNA3602:00\ 0911:5288\ Touchpad;
-	end
-end
