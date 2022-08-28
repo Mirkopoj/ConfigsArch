@@ -18,8 +18,14 @@ Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/mg979/vim-visual-multi' " CTRL + N for multiple cursors
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter',{'do': 'TSUpdate'} "Sintax highlighting
+Plug 'https://github.com/kevinhwang91/rnvimr',{'do': 'make sync'} "Ranger
 
 call plug#end()
+
+"Make Ranger replace netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
+
+nmap <space>r :RnvimrToggle<CR>
 
 lua << luant
 require'nvim-treesitter.configs'.setup {
