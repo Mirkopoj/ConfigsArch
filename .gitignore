@@ -13,3 +13,17 @@ GIMP/
 msmtp/
 mutt/
 gtk-2.0/
+BraveSoftware/
+FreeCAD/
+cef_user_data/
+discord/
+inkscape/
+memos.json
+mimeapps.list
+pulse/
+ranger/__pycache__/
+remmina/
+soptify-tui/
+soptify/
+wyebadblock/
+xsettingsd/

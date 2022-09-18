@@ -18,7 +18,7 @@ configuration {
 }
 
 window {
-    transparency:                   "no";
+    transparency:                   "real";
     background-color:               @background;
     text-color:                     @foreground;
 	border:							0px;

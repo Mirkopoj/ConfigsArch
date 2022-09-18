@@ -10,48 +10,60 @@
 call plug#begin()
 
 Plug 'http://github.com/tpope/vim-surround' " Surrounding ysw)
-Plug 'https://github.com/preservim/nerdtree' " NerdTree
 Plug 'https://github.com/tpope/vim-commentary' " For Commenting gcc & gc
 Plug 'https://github.com/vim-airline/vim-airline' " Status bar
-Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'release'}  " Auto Completion
+Plug 'https://github.com/neoclide/coc.nvim', {'branch': 'master', 'do': 'yarn install --frozen-lockfile'}  " Auto Completion
 Plug 'https://github.com/ryanoasis/vim-devicons' " Developer Icons
 Plug 'https://github.com/preservim/tagbar' " Tagbar for code navigation
 Plug 'https://github.com/mg979/vim-visual-multi' " CTRL + N for multiple cursors
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter',{'do': 'TSUpdate'} "Sintax highlighting
 Plug 'https://github.com/kevinhwang91/rnvimr',{'do': 'make sync'} "Ranger
+Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'stevearc/vim-arduino'
 
 call plug#end()
 
 "Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
-
 nmap <space>r :RnvimrToggle<CR>
+
+"Latex PDF previewer"
+let g:livepreview_previewer = 'zathura'
+
+"KEY MAPS"
+
+"Auto Completion"
+inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
+
+"Vim Splits"
+"move"
+nnoremap <C-h> <C-w>h
+nnoremap <C-j> <C-w>j
+nnoremap <C-k> <C-w>k
+nnoremap <C-l> <C-w>l
+"resize"
+nnoremap <C-S-h> :vertical resize +3<CR>
+nnoremap <C-S-l> :vertical resize -3<CR>
+nnoremap <C-S-k> :resize +3<CR>
+nnoremap <C-S-j> :resize -3<CR>
+
+"Arduino + airline
+function! ArduinoStatusLine()
+  let port = arduino#GetPort()
+  let line = '[' . g:arduino_board . '] [' . g:arduino_programmer . ']'
+  if !empty(port)
+    let line = line . ' (' . port . ':' . g:arduino_serial_baud . ')'
+  endif
+  return line
+endfunction
+autocmd BufNewFile,BufRead *.ino let g:airline_section_x='%{ArduinoStatusLine()}'
 
 lua << luant
 require'nvim-treesitter.configs'.setup {
-  -- One of "all", "maintained" (parsers with maintainers), or a list of languages
-  -- ensure_installed = "maintained",
-
-  -- Install languages syhronously (only applied to `ensure_installed`)
   sync_install = false,
-
   auto_install = true,
-
-  -- List of parsers to ignore installing
-  --ignore_install = { "javascript" },
-
   highlight = {
-    -- `false` will disable the whole extension
     enable = true,
-
-    -- NOTE: these are the names of the parsers and not the filetype. 
-    -- list of language that will be disabled
-    --disable = { "c", "rust" },
-
-    -- Setting this to true will run `:h syntax` and tree-sitter at the same time.
-    -- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
-    -- Using this option may slow down your editor, and you may see some duplicate highlights.
-    -- Instead of true it can also be a list of languages
     additional_vim_regex_highlighting = false,
   },
 }
