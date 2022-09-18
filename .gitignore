@@ -27,3 +27,6 @@ soptify-tui/
 soptify/
 wyebadblock/
 xsettingsd/
+fish/functions/
+fontforge/
+qtile/__pycache__/
