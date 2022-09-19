@@ -1,11 +1,11 @@
 set statusbar-h-padding 0
 set statusbar-v-padding 0
 set page-padding 1
+map i zoom in
+map u zoom out
 map r reload
 map R rotate
-map i recolor
+map I recolor
 map p print
 
 
-#map K zoom in
-#map J zoom off
