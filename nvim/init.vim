@@ -42,8 +42,8 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 "resize"
-nnoremap <C-S-h> :vertical resize +3<CR>
-nnoremap <C-S-l> :vertical resize -3<CR>
+nnoremap <C-S-l> :vertical resize +3<CR>
+nnoremap <C-S-h> :vertical resize -3<CR>
 nnoremap <C-S-k> :resize +3<CR>
 nnoremap <C-S-j> :resize -3<CR>
 
