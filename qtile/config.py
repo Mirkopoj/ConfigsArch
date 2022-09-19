@@ -33,12 +33,19 @@ from libqtile.layout.floating import Floating
 from libqtile.config import Click, Drag, Group, Key, Match, Screen, Match, ScratchPad, DropDown
 from libqtile.lazy import lazy
 
+import psutil
 import os
 
+BAT = psutil.sensors_battery() is not None
 HOME = os.getenv("HOME", default="/home/mirko")
 
+if BAT:
+    KEYS = "es"
+else:
+    KEYS = "latam"
+
 autostart = [
-    "setxkbmap latam",
+    "setxkbmap "+KEYS,
     "feh --bg-scale "+HOME+"/.config/qtile/Fondo.jpg  --no-xinerama",
 ]
 
@@ -104,6 +111,13 @@ keys = [
     Key([MOD], "t", lazy.window.toggle_floating(), desc='Toggle floating')
 ]
 
+if BAT:
+    HEIGHT = 0.6
+    Y = 0.2
+else:
+    HEIGHT = 0.5
+    Y = 0.25
+
 __groups = {
     1: Group(""),
     2: Group("爵",matches=[Match(wm_class=["brave"  ])]),
@@ -114,60 +128,60 @@ __groups = {
         DropDown(
             "term",
             [terminal],
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
         DropDown(
             "calcurse",
             terminal+" -e calcurse",
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
         DropDown(
             "neomutt",
             terminal+" -e "+HOME+"/.config/qtile/neomutt.sh",
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
         DropDown(
             "ranger",
             terminal+" -e ranger",
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
         DropDown(
             "btop",
             terminal+" -e btop",
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
         DropDown(
             "vimb",
             "vimb",
-            height = 0.6,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = 0.2,
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
@@ -250,10 +264,6 @@ widget_defaults = dict(
     padding=6,
 )
 extension_defaults = widget_defaults.copy()
-
-import psutil
-
-BAT = psutil.sensors_battery() is not None
 
 if BAT:
     screens = [
