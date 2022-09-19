@@ -117,7 +117,7 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: Iosevka
+    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -129,8 +129,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Iosevka
+    #family: BigBlue_Terminal_437TT Nerd Font
+    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -142,8 +142,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Iosevka
+    #family: BigBlue_Terminal_437TT Nerd Font
+    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -155,8 +155,8 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: monospace
-    #family: Iosevka
+    #family: BigBlue_Terminal_437TT Nerd Font
+    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.

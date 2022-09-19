@@ -112,6 +112,11 @@ keys = [
 ]
 
 if BAT:
+    keys.extend([
+        Key([MOD], "F2", lazy.spawn("/home/mirko/.config/qtile/toggle_touchpad.fish")),
+        ])
+
+if BAT:
     HEIGHT = 0.6
     Y = 0.2
 else:
