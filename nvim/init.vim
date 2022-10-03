@@ -26,6 +26,7 @@ call plug#end()
 "Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
 nmap <space>r :RnvimrToggle<CR>
+hi link NormalFloat NONE
 
 "Latex PDF previewer"
 let g:livepreview_previewer = 'zathura'
