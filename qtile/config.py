@@ -196,7 +196,7 @@ __groups = {
 groups = [__groups[i] for i in __groups]
 
 def get_group_key(name):
-    return [k for k, g in __groups.items() if g.name ==name][0]
+    return [k for k, g in __groups.items() if g.name == name][0]
 
 for i in groups:
     keys.extend(

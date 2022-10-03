@@ -41,8 +41,8 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w>l
-"resize"
+nnoremap <C-l> <C-w> 
+"Resize"
 nnoremap <C-S-l> :vertical resize +3<CR>
 nnoremap <C-S-h> :vertical resize -3<CR>
 nnoremap <C-S-k> :resize +3<CR>
