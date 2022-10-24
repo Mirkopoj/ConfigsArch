@@ -19,6 +19,7 @@ Plug 'https://github.com/mg979/vim-visual-multi' " CTRL + N for multiple cursors
 Plug 'https://github.com/nvim-treesitter/nvim-treesitter',{'do': 'TSUpdate'} "Sintax highlighting
 Plug 'https://github.com/kevinhwang91/rnvimr',{'do': 'make sync'} "Ranger
 Plug 'xuhdev/vim-latex-live-preview', { 'for': 'tex' }
+Plug 'lervag/vimtex'
 Plug 'stevearc/vim-arduino'
 
 call plug#end()
@@ -31,6 +32,12 @@ hi link NormalFloat NONE
 "Latex PDF previewer"
 let g:livepreview_previewer = 'zathura'
 
+filetype plugin indent on
+syntax enable
+let g:vimtex_view_method = 'zathura'
+let g:vimtex_compiler_method = 'latexrun'
+autocmd BufNewFile,BufRead *.tex set spelllang=es spell
+
 "KEY MAPS"
 
 "Auto Completion"
@@ -41,7 +48,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-l> <C-w> 
+nnoremap <C-l> <C-w>l
 "Resize"
 nnoremap <C-S-l> :vertical resize +3<CR>
 nnoremap <C-S-h> :vertical resize -3<CR>
@@ -65,6 +72,7 @@ require'nvim-treesitter.configs'.setup {
   auto_install = true,
   highlight = {
     enable = true,
+	 disable = { "latex" },
     additional_vim_regex_highlighting = false,
   },
 }

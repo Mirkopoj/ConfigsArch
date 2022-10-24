@@ -190,6 +190,16 @@ __groups = {
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
+        DropDown(
+            "qalculate",
+            "qalculate-gtk",
+            height = HEIGHT,
+            width = 0.8,
+            x = 0.1,
+            y = Y,
+            on_focus_lost_hide = True,
+            warp_pointer = False,
+        ),
     ]),
 } 
 
@@ -240,6 +250,9 @@ keys.extend([
     ),
     Key([MOD], "v",
         lazy.group["ScratchPad"].dropdown_toggle("vimb")
+    ),
+    Key([MOD], "q",
+        lazy.group["ScratchPad"].dropdown_toggle("qalculate")
     ),
 ])
 
