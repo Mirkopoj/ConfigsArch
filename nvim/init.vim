@@ -24,6 +24,21 @@ Plug 'stevearc/vim-arduino'
 
 call plug#end()
 
+"Custom commands
+cnoreabbrev W w
+cnoreabbrev Wq wq
+cnoreabbrev WQ wq
+cnoreabbrev wQ wq
+cnoreabbrev qW wq
+cnoreabbrev qw wq
+cnoreabbrev QW wq
+cnoreabbrev Qw wq
+cnoreabbrev Q q
+" Save file with sudo
+:command -nargs=0  WriteWithSudo w !sudo tee % >/dev/null
+" Use :ww instead of :WriteWithSudo
+cnoreabbrev ww WriteWithSudo
+
 "Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
 nmap <space>r :RnvimrToggle<CR>
@@ -31,6 +46,7 @@ hi link NormalFloat NONE
 
 "Latex PDF previewer"
 let g:livepreview_previewer = 'zathura'
+let g:livepreview_use_biber = 1
 
 filetype plugin indent on
 syntax enable
