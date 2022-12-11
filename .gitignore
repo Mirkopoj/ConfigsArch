@@ -31,8 +31,8 @@ fish/functions/
 fontforge/
 ranger/plugins/__pycache__/
 qtile/__pycache__/
-qtile/Fondo.jpg
-qtile/Fondo.jpg_
+qtile/*.jpg
+qtile/*.jpg_
 vimb/
 qalculate/
 Electron/

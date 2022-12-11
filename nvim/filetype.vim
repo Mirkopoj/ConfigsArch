@@ -3,4 +3,6 @@ if exists("did_load_filetypes")
 endif
 augroup filetypedetect
 	au! BufRead,BufNewFile *.comp       setfiletype glsl
+	au! BufRead,BufNewFile *.vert       setfiletype glsl
+	au! BufRead,BufNewFile *.frag       setfiletype glsl
 augroup END

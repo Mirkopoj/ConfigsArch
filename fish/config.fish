@@ -1,4 +1,4 @@
-if test -z "$VIMRUNTIME"
+if test -z "$VIMRUNTIME" && test -z "$PS1" && test -z "$SSH_CLIENT" && test -z "$SSH_TTY"
 	if test $TERM = "linux"
 		neofetch
 	else 
