@@ -20,6 +20,7 @@ alias log "git log --graph --abbrev-commit --decorate --format=format:'%C(bold b
 alias la "exa --group-directories-first -a"
 alias ls "exa --group-directories-first"
 alias lc "exa | egrep '\.(c|h|cpp|rs|py|cu|s)\$'"
+alias tree "exa --tree"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"

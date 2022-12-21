@@ -95,6 +95,8 @@ keys = [
     Key([MOD, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([MOD], "r", lazy.spawn("rofi -show drun"), desc="Program Launcher"),
+    Key([MOD], "p", lazy.spawn(HOME+"/.config/qtile/power.sh"), desc="Program Launcher"),
+    Key([MOD, "shift"], "w", lazy.spawn(HOME+"/.config/qtile/wifi.sh"), desc="Program Launcher"),
     Key(["mod1"], "Tab", lazy.spawn("rofi -show window"), desc="Move between windows"),
     Key([MOD, "shift"], "s", lazy.spawn("flameshot gui"), desc="Screeshots"),
 
@@ -371,7 +373,12 @@ floating_layout = Floating(
         Match(wm_class="ssh-askpass"),  # ssh-askpass
         Match(title="branchdialog"),  # gitk
         Match(title="pinentry"),  # GPG key password entry
-    ]
+    ],
+    border_focus="#a9ded7",
+    border_normal="#4f6b67",
+    border_width=4,
+    border_on_single=True,
+    margin=4,
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"

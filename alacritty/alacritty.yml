@@ -117,7 +117,6 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -129,8 +128,6 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    #family: BigBlue_Terminal_437TT Nerd Font
-    #family: BigBlue_Terminal_437TT Nerd Font
     family: BigBlue_Terminal_437TT Nerd Font
 
     # The `style` can be specified to pick a specific face.
@@ -338,7 +335,7 @@ font:
 # Bell
 #
 # The bell is rung every time the BEL control character is received.
-#bell:
+bell:
   # Visual Bell Animation
   #
   # Animation effect for flashing the screen when the visual bell is rung.
@@ -361,7 +358,7 @@ font:
   #duration: 0
 
   # Visual bell animation color.
-  #color: '#ffffff'
+  color: '#ffffff'
 
   # Bell Command
   #

@@ -24,6 +24,14 @@ Plug 'stevearc/vim-arduino'
 
 call plug#end()
 
+"Magia Macro
+xnoremap @ :<C-u>call ExecuteMacroOverVisualRange()<CR>
+
+function! ExecuteMacroOverVisualRange()
+  echo "@".getcmdline()
+  execute ":'<,'>normal @".nr2char(getchar())
+endfunction
+
 "Custom commands
 cnoreabbrev W w
 cnoreabbrev Wq wq
@@ -96,7 +104,7 @@ inoremap <expr> <CR> pumvisible() ? "\<C-Y>" : "\<CR>"
 	" Add `:OR` command for organize imports of the current buffer.
 	command! -nargs=0 OR   :call     CocActionAsync('runCommand', 'editor.action.organizeImport')
 
-	hi CocMenuSel ctermbg=237 guibg=#13354A
+	hi CocMenuSel ctermbg=237 guibg=#4A134A "#13354A
 
 "Vim Splits"
 "move"
