@@ -5,10 +5,10 @@ notify-send "Getting list of available Wi-Fi networks..."
 wifi_list=$(nmcli --fields "SECURITY,SSID" device wifi list | sed 1d | sed 's/  */ /g' | sed -E "s/WPA*.?\S/ /g" | sed "s/^--/ /g" | sed "s/  //g" | sed "/--/d")
 
 connected=$(nmcli -fields WIFI g)
-if [[ "$connected" =~ "enabled" ]]; then
-	toggle="睊  Disable Wi-Fi"
-elif [[ "$connected" =~ "disabled" ]]; then
+if [[ "$connected" =~ "disabled" ]] || [[ "$connected" =~ "desactivado" ]]; then
 	toggle="直  Enable Wi-Fi"
+elif [[ "$connected" =~ "enabled" ]] || [[ "$connected" =~ "activado" ]]; then
+	toggle="睊  Disable Wi-Fi"
 fi
 
 # Use rofi to select wifi network
@@ -31,7 +31,7 @@ else
 		nmcli connection up id "$chosen_id" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	else
 		if [[ "$chosen_network" =~ "" ]]; then
-			wifi_password=$(rofi -dmenu -p "Password: " )
+			wifi_password=$(rofi -dmenu -theme-str '@import "wifi_password.rasi"' -p "Password: " )
 		fi
 		nmcli device wifi connect "$chosen_id" password "$wifi_password" | grep "successfully" && notify-send "Connection Established" "$success_message"
 	fi
