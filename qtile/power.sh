@@ -1,6 +1,7 @@
 #! /bin/sh
 
-chosen=$(printf "  Power Off\n  Restart\n  Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"')
+rofi_theme="30%;"
+chosen=$(printf "  Power Off\n  Restart\n  Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"' -theme-str "window { width: "$rofi_theme" }")
 
 case "$chosen" in
 	"  Power Off") shutdown now ;;
