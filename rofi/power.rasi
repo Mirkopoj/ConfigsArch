@@ -29,7 +29,7 @@ window {
 
 listview {
     background-color:               @background-alt;
-    columns:                        5;
+    columns:                        3;
     lines:                          3;
     spacing:                        0%;
     cycle:                          false;
