@@ -119,8 +119,8 @@ if BAT:
         ])
 
 if BAT:
-    HEIGHT = 0.6
-    Y = 0.2
+    HEIGHT = 0.72
+    Y = 0.14
 else:
     HEIGHT = 0.5
     Y = 0.25
