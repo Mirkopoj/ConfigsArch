@@ -1,6 +1,12 @@
 #! /bin/sh
 
-rofi_theme="30%;"
+LEVEL="$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{print $2}' | sed 's/\%//g')"
+
+if [ $LEVEL -le 100 ]; then
+	rofi_theme="34%;"
+else
+	rofi_theme="30%;"
+fi
 chosen=$(printf "  Power Off\n  Restart\n  Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"' -theme-str "window { width: "$rofi_theme" }")
 
 case "$chosen" in
