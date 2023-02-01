@@ -108,6 +108,7 @@ keys = [
     Key([MOD, "shift"], "m", lazy.spawn(terminal+" -e "+HOME+"/.config/qtile/neomutt.sh"), desc="Launch neomutt"),
     Key([MOD, "shift"], "f", lazy.spawn(terminal+" -e ranger"), desc="Launch ranger"),
     Key([MOD, "shift"], "g", lazy.spawn(terminal+" -e btop"), desc="Launch btop"),
+    Key([MOD, "shift"], "d", lazy.spawn(terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash"), desc="Launch btop"),
     Key([MOD, "shift"], "v", lazy.spawn("tabbed -c vimb -e"), desc="Launch vimb"),
 
     Key([MOD], "t", lazy.window.toggle_floating(), desc='Toggle floating')
@@ -127,7 +128,7 @@ else:
 
 __groups = {
     1: Group(""),
-    2: Group("爵",matches=[Match(wm_class=["brave"  ])]),
+    2: Group("爵",matches=[Match(wm_class=["Brave"  ])]),
     3: Group("", matches=[Match(wm_class=["kicad"    ])]),
     4: Group("", matches=[Match(wm_class=["mplab_ide"])]),
     0: Group(""),
@@ -202,6 +203,16 @@ __groups = {
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
+        DropDown(
+            "flash",
+            terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash",
+            height = HEIGHT,
+            width = 0.8,
+            x = 0.1,
+            y = Y,
+            on_focus_lost_hide = True,
+            warp_pointer = False,
+        ),
     ]),
 } 
 
@@ -255,6 +266,9 @@ keys.extend([
     ),
     Key([MOD], "q",
         lazy.group["ScratchPad"].dropdown_toggle("qalculate")
+    ),
+    Key([MOD], "d",
+        lazy.group["ScratchPad"].dropdown_toggle("flash")
     ),
 ])
 
