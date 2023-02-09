@@ -46,6 +46,8 @@ return require('packer').startup(function(use)
 
 	use 'norcalli/nvim-colorizer.lua'
 	use 'Mirkopoj/vim-pio'
+	use 'Mirkopoj/mplabx-nvim-lspCompat'
+	use 'Mirkopoj/mplabx-nvim-autoloadfiles'
 
 	if packer_bootstrap then
 		require('packer').sync()

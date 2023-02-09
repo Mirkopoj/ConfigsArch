@@ -124,6 +124,16 @@ _G.packer_plugins = {
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mason.nvim",
     url = "https://github.com/williamboman/mason.nvim"
   },
+  ["mplabx-nvim-autoloadfiles"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mplabx-nvim-autoloadfiles",
+    url = "https://github.com/Mirkopoj/mplabx-nvim-autoloadfiles"
+  },
+  ["mplabx-nvim-lspCompat"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mplabx-nvim-lspCompat",
+    url = "https://github.com/Mirkopoj/mplabx-nvim-lspCompat"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/nvim-cmp",

@@ -110,6 +110,7 @@ keys = [
     Key([MOD, "shift"], "g", lazy.spawn(terminal+" -e btop"), desc="Launch btop"),
     Key([MOD, "shift"], "d", lazy.spawn(terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash"), desc="Launch btop"),
     Key([MOD, "shift"], "v", lazy.spawn("tabbed -c vimb -e"), desc="Launch vimb"),
+    Key([MOD, "shift"], "a", lazy.spawn("pavucontrol"), desc="Launch audio control"),
 
     Key([MOD], "t", lazy.window.toggle_floating(), desc='Toggle floating')
 ]
@@ -213,6 +214,16 @@ __groups = {
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
+        DropDown(
+            "pavucontrol",
+            "pavucontrol",
+            height = HEIGHT,
+            width = 0.8,
+            x = 0.1,
+            y = Y,
+            on_focus_lost_hide = True,
+            warp_pointer = False,
+        ),
     ]),
 } 
 
@@ -269,6 +280,9 @@ keys.extend([
     ),
     Key([MOD], "d",
         lazy.group["ScratchPad"].dropdown_toggle("flash")
+    ),
+    Key([MOD], "a",
+        lazy.group["ScratchPad"].dropdown_toggle("pavucontrol")
     ),
 ])
 

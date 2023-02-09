@@ -22,6 +22,8 @@ alias la "exa --group-directories-first -a"
 alias ls "exa --group-directories-first"
 alias lc "exa | grep -E '\.(c|h|cpp|rs|py|cu|s)\$'"
 alias tree "exa --tree"
+alias cat "bat"
+alias vi "nvim"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
