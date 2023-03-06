@@ -13,6 +13,11 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
 
 	vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+
+	vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>d[', '<cmd>lua vim.diagnostic.goto_prev()<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>d]', '<cmd>lua vim.diagnostic.goto_next()<CR>', { noremap = true, silent = true })
+	vim.api.nvim_set_keymap('n', '<leader>dd', '<cmd>Telescope diagnostics<CR>', { noremap = true, silent = true })
 end
 
 local capabilities = require('cmp_nvim_lsp').default_capabilities()
@@ -20,7 +25,7 @@ local capabilities = require('cmp_nvim_lsp').default_capabilities()
 local lspconfig = require('lspconfig')
 
 local servers = {
-	'sumneko_lua',
+	'lua_ls',
 	'pyright',
 	'rust_analyzer',
 	'arduino_language_server',

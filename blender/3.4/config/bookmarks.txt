@@ -1,0 +1,4 @@
+[Bookmarks]
+[Recent]
+/home/mirko/Downloads/
+/home/mirko/Downloads/Nexus-Buddy-2-Blender-Scripts-16.30/Blender-2.8-Addons/
