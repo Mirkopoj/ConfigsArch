@@ -43,3 +43,6 @@ zoom.conf
 zoomus.conf
 bless/
 xnviewmp/
+blender/
+sqlitebrowser/
+nvim_/

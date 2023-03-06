@@ -1,1 +1,0 @@
-{AMD/AMD Radeon RX 6800 (navi21, LLVM 15.0.7, DRM 3.49, 6.2.2-arch1-1)/4.6 (Core Profile) Mesa 22.3.6}=SUPPORTED
