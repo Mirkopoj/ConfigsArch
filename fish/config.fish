@@ -10,10 +10,10 @@ end
 set -gx GPG_TTY (tty)
 set -gx EDITOR nvim
 set -gx VISUAL nvim
-set -gx _JAVA_AWT_WM_NONREPARENTING 1
-set -gx AWT_TOOLKIT MToolkit
-set -gx JDK_JAVA_OPTIONS '-Dsun.java2d.opengl=true'
-set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
+#set -gx _JAVA_AWT_WM_NONREPARENTING 1
+#set -gx AWT_TOOLKIT MToolkit
+#set -gx JDK_JAVA_OPTIONS '-Dsun.java2d.opengl=true'
+#set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
 
 #ALIASES
 
@@ -25,6 +25,7 @@ alias lc "exa | grep -E '\.(c|h|cpp|rs|py|cu|s)\$'"
 alias tree "exa --tree"
 alias cat "bat"
 alias vi "nvim"
+alias update "paru -Sy archlinux-keyring; paru -Syu --sudoloop"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
