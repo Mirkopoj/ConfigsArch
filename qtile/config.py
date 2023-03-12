@@ -206,7 +206,7 @@ __groups = {
         ),
         DropDown(
             "flash",
-            terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash",
+            terminal+" -e flash",
             height = HEIGHT,
             width = 0.8,
             x = 0.1,
