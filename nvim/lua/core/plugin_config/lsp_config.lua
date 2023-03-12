@@ -34,7 +34,8 @@ local servers = {
 	'ltex',
 	'taplo',
 	'vimls',
-	'glslls'
+	'glslls',
+	'asm_lsp'
 }
 
 if not lspconfig.glslls then
