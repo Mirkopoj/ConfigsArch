@@ -1,5 +1,8 @@
 require("mason").setup()
 require("mason-lspconfig").setup()
+require("neodev").setup({
+  library = { plugins = { "nvim-dap-ui" }, types = true },
+})
 
 local on_attach = function(_, bufnr)
 	 local bufopts = { noremap=true, silent=true, buffer=bufnr }

@@ -119,6 +119,11 @@ _G.packer_plugins = {
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mason-lspconfig.nvim",
     url = "https://github.com/williamboman/mason-lspconfig.nvim"
   },
+  ["mason-nvim-dap.nvim"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mason-nvim-dap.nvim",
+    url = "https://github.com/jay-babu/mason-nvim-dap.nvim"
+  },
   ["mason.nvim"] = {
     loaded = true,
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mason.nvim",
@@ -134,6 +139,11 @@ _G.packer_plugins = {
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/mplabx-nvim-lspCompat",
     url = "https://github.com/Mirkopoj/mplabx-nvim-lspCompat"
   },
+  ["neodev.nvim"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/neodev.nvim",
+    url = "https://github.com/folke/neodev.nvim"
+  },
   ["nvim-cmp"] = {
     loaded = true,
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/nvim-cmp",
@@ -148,6 +158,16 @@ _G.packer_plugins = {
     loaded = true,
     path = "/home/mirko/.local/share/nvim/site/pack/packer/start/nvim-colors",
     url = "https://github.com/Mirkopoj/nvim-colors"
+  },
+  ["nvim-dap"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/nvim-dap",
+    url = "https://github.com/mfussenegger/nvim-dap"
+  },
+  ["nvim-dap-ui"] = {
+    loaded = true,
+    path = "/home/mirko/.local/share/nvim/site/pack/packer/start/nvim-dap-ui",
+    url = "https://github.com/rcarriga/nvim-dap-ui"
   },
   ["nvim-lspconfig"] = {
     loaded = true,
