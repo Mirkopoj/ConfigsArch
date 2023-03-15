@@ -25,7 +25,7 @@ alias lc "exa | grep -E '\.(c|h|cpp|rs|py|cu|s)\$'"
 alias tree "exa --tree"
 alias cat "bat"
 alias vi "nvim"
-alias update "paru -Sy archlinux-keyring; paru -Syu --sudoloop"
+alias update "paru -Sy --noconfirm archlinux-keyring; paru -Syu --sudoloop --noconfirm"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
