@@ -46,3 +46,4 @@ xnviewmp/
 blender/
 sqlitebrowser/
 nvim_/
+nvim/plugin/packer_compiled.lua
