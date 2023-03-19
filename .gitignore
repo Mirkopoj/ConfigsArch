@@ -45,5 +45,5 @@ bless/
 xnviewmp/
 blender/
 sqlitebrowser/
-nvim_/
+cava/
 nvim/plugin/packer_compiled.lua
