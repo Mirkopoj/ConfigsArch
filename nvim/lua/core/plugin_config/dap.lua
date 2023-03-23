@@ -18,3 +18,5 @@ dap.configurations.cpp[1]["args"] = function ()
 	local _ = str:gsub("[^%s]+",function(c) table.insert(t,c) end)
 	return t
 end
+
+dap.configurations.python[1]["pythonPath"] = '/usr/bin/python'
