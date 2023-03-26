@@ -14,6 +14,7 @@ set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx AWT_TOOLKIT MToolkit
 set -gx JDK_JAVA_OPTIONS '-Dsun.java2d.opengl=true'
 set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
+set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 
 #ALIASES
 

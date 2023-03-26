@@ -121,9 +121,11 @@ if BAT:
         ])
 
 if BAT:
+    OFF = 0.06
     HEIGHT = 0.72
     Y = 0.14
 else:
+    OFF = 0
     HEIGHT = 0.5
     Y = 0.25
 
@@ -177,10 +179,10 @@ __groups = {
         DropDown(
             "btop",
             terminal+" -e btop",
-            height = HEIGHT,
+            height = HEIGHT+OFF,
             width = 0.8,
             x = 0.1,
-            y = Y,
+            y = Y-(OFF/2),
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
