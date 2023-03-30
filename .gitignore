@@ -47,3 +47,4 @@ blender/
 sqlitebrowser/
 cava/
 nvim/plugin/packer_compiled.lua
+pavucontrol.ini
