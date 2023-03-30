@@ -48,4 +48,4 @@ sqlitebrowser/
 cava/
 nvim/plugin/packer_compiled.lua
 pavucontrol.ini
-ranger/plugin/ranger_devicons/
+ranger/plugins/ranger_devicons/
