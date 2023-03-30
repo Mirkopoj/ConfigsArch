@@ -54,6 +54,9 @@ return require('packer').startup(function(use)
 	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 	use "jay-babu/mason-nvim-dap.nvim"
 
+	use 'metakirby5/codi.vim'
+	use 'urbainvaes/vim-ripple'
+
 	if packer_bootstrap then
 		require('packer').sync()
 	end
