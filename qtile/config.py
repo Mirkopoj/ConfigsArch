@@ -54,6 +54,8 @@ for x in autostart:
 
 MOD = "mod4"
 terminal = "alacritty"  #guess_terminal()
+if BAT:
+    terminal = terminal+" -o font.size=7.5"
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -121,11 +123,9 @@ if BAT:
         ])
 
 if BAT:
-    OFF = 0.06
     HEIGHT = 0.72
     Y = 0.14
 else:
-    OFF = 0
     HEIGHT = 0.5
     Y = 0.25
 
@@ -179,10 +179,10 @@ __groups = {
         DropDown(
             "btop",
             terminal+" -e btop",
-            height = HEIGHT+OFF,
+            height = HEIGHT,
             width = 0.8,
             x = 0.1,
-            y = Y-(OFF/2),
+            y = Y,
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
