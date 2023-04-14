@@ -1,8 +1,8 @@
 require("dapui").setup()
 require("mason-nvim-dap").setup({
     automatic_setup = true,
+	 handlers = {},
 })
-require 'mason-nvim-dap'.setup_handlers {}
 
 vim.keymap.set("n", "<F5>", ":lua require'dap'.continue()<CR>")
 vim.keymap.set("n", "<F6>", ":lua require'dap'.step_over()<CR>")
