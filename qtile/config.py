@@ -138,7 +138,7 @@ __groups = {
     5: ScratchPad("ScratchPad", [
         DropDown(
             "term",
-            [terminal],
+            terminal,
             height = HEIGHT,
             width = 0.8,
             x = 0.1,
