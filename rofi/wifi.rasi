@@ -1,5 +1,6 @@
 configuration {
-	font:							"BigBlue_Terminal_437TT Nerd Font Mono 13";
+	//font:							"BigBlue_Terminal_437TT Nerd Font Mono 10";
+	font:							"Monoid Nerd Font Bold 10";
     show-icons:                     false;
     disable-history:                false;
 	sidebar-mode: 					false;

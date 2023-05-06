@@ -309,7 +309,8 @@ BBT ="BigBlue_Terminal_437TT Nerd Font Mono"
 
 widget_defaults = dict(
     #font="Iosevka",
-    font=os.getenv("FONT",default="BigBlue_Terminal_437TT Nerd Font Mono"),
+    font="Monoid Nerd Font Bold",
+    #font=os.getenv("FONT",default="BigBlue_Terminal_437TT Nerd Font Mono"),
     fontsize=15,
     padding=6,
 )
