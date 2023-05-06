@@ -1,10 +1,5 @@
-#if status is-interactive < ver..
-if test -z "$VIMRUNTIME" && test -z "$PS1" && test -z "$SSH_CLIENT" && test -z "$SSH_TTY"
-	if test $TERM = "linux"
-		neofetch
-	else 
-		neofetch --ascii_colors 14 37 --colors 14 7 7 14 7 7 --bar_colors 7 14
-	end
+if status is-interactive
+	~/.config/fish/fetch.fish
 end
 
 set -gx GPG_TTY (tty)
