@@ -1,27 +1,19 @@
 --- tabbed.c
 +++ tabbed.c
-@@ -113,6 +113,7 @@ static Bool gettextprop(Window w, Atom atom, char *text, unsigned int size);
- static void initfont(const char *fontstr);
- static Bool isprotodel(int c);
- static void keypress(const XEvent *e);
-+static void keyrelease(const XEvent *e);
- static void killclient(const Arg *arg);
- static void manage(Window win);
- static void maprequest(const XEvent *e);
-@@ -149,6 +150,7 @@ static void (*handler[LASTEvent]) (const XEvent *) = {
- 	[Expose] = expose,
- 	[FocusIn] = focusin,
- 	[KeyPress] = keypress,
-+	[KeyRelease] = keyrelease,
+@@ -127,6 +127,7 @@ static void sendxembed(int c, long msg, long detail, long d1, long d2);
+ static void setcmd(int argc, char *argv[], int);
+ static void setup(void);
+ static void sigchld(int unused);
++static void showbar(const Arg *arg);
+ static void spawn(const Arg *arg);
+ static int textnw(const char *text, unsigned int len);
+ static void toggle(const Arg *arg);
+@@ -154,7 +155,7 @@ static void (*handler[LASTEvent]) (const XEvent *) = {
  	[MapRequest] = maprequest,
  	[PropertyNotify] = propertynotify,
  };
-@@ -1062,7 +1090,7 @@ setup(void)
- 	XMapRaised(dpy, win);
- 	XSelectInput(dpy, win, SubstructureNotifyMask | FocusChangeMask |
- 	             ButtonPressMask | ExposureMask | KeyPressMask |
--	             PropertyChangeMask | StructureNotifyMask |
-+	             KeyReleaseMask | PropertyChangeMask | StructureNotifyMask |
- 	             SubstructureRedirectMask);
- 	xerrorxlib = XSetErrorHandler(xerror);
- 
+-static int bh, wx, wy, ww, wh;
++static int bh, wx, wy, ww, wh, vbh;
+ static unsigned int numlockmask;
+ static Bool running = True, nextfocus, doinitspawn = True,
+             fillagain = False, closelastclient = False,

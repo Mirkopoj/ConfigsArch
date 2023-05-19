@@ -188,7 +188,7 @@ __groups = {
         ),
         DropDown(
             "vimb",
-            "vimb",
+            "tabbed -c vimb -e",
             height = HEIGHT,
             width = 0.8,
             x = 0.1,
