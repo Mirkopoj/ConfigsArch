@@ -1,0 +1,27 @@
+--- tabbed.c
++++ tabbed.c
+@@ -113,6 +113,7 @@ static Bool gettextprop(Window w, Atom atom, char *text, unsigned int size);
+ static void initfont(const char *fontstr);
+ static Bool isprotodel(int c);
+ static void keypress(const XEvent *e);
++static void keyrelease(const XEvent *e);
+ static void killclient(const Arg *arg);
+ static void manage(Window win);
+ static void maprequest(const XEvent *e);
+@@ -149,6 +150,7 @@ static void (*handler[LASTEvent]) (const XEvent *) = {
+ 	[Expose] = expose,
+ 	[FocusIn] = focusin,
+ 	[KeyPress] = keypress,
++	[KeyRelease] = keyrelease,
+ 	[MapRequest] = maprequest,
+ 	[PropertyNotify] = propertynotify,
+ };
+@@ -1062,7 +1090,7 @@ setup(void)
+ 	XMapRaised(dpy, win);
+ 	XSelectInput(dpy, win, SubstructureNotifyMask | FocusChangeMask |
+ 	             ButtonPressMask | ExposureMask | KeyPressMask |
+-	             PropertyChangeMask | StructureNotifyMask |
++	             KeyReleaseMask | PropertyChangeMask | StructureNotifyMask |
+ 	             SubstructureRedirectMask);
+ 	xerrorxlib = XSetErrorHandler(xerror);
+ 
