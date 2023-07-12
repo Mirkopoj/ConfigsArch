@@ -226,6 +226,16 @@ __groups = {
             on_focus_lost_hide = True,
             warp_pointer = False,
         ),
+        DropDown(
+            "update",
+            terminal+" -e "+HOME+"/.config/qtile/update.sh",
+            height = HEIGHT,
+            width = 0.8,
+            x = 0.1,
+            y = Y,
+            on_focus_lost_hide = True,
+            warp_pointer = False,
+        ),
     ]),
 } 
 
@@ -285,6 +295,9 @@ keys.extend([
     ),
     Key([MOD], "a",
         lazy.group["ScratchPad"].dropdown_toggle("pavucontrol")
+    ),
+    Key([MOD], "u",
+        lazy.group["ScratchPad"].dropdown_toggle("update")
     ),
 ])
 
