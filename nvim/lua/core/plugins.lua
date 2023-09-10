@@ -1,8 +1,8 @@
 local ensure_packer = function()
 	local fn = vim.fn
-	local install_path = fn.stdpath('data')..'/site/pack/packer/start/packer.nvim'
+	local install_path = fn.stdpath('data') .. '/site/pack/packer/start/packer.nvim'
 	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path})
+		fn.system({ 'git', 'clone', '--depth', '1', 'https://github.com/wbthomason/packer.nvim', install_path })
 		vim.cmd [[packadd packer.nvim]]
 		return true
 	end
@@ -18,16 +18,18 @@ return require('packer').startup(function(use)
 		'nvim-lualine/lualine.nvim',
 		requires = { 'kyazdani42/nvim-web-devicons', opt = true }
 	}
-	use 'ryanoasis/vim-devicons' -- Developer Icons
-	use 'mg979/vim-visual-multi' -- CTRL + N for multiple cursors
+	use 'ryanoasis/vim-devicons'        -- Developer Icons
+	use 'mg979/vim-visual-multi'        -- CTRL + N for multiple cursors
 	use 'nvim-treesitter/nvim-treesitter' --Sintax highlighting
-	use 'kevinhwang91/rnvimr' --Ranger
+	use 'kevinhwang91/rnvimr'           --Ranger
 	use 'xuhdev/vim-latex-live-preview'
 	use 'stevearc/vim-arduino'
 	use {
 		'nvim-telescope/telescope.nvim',
 		tag = '0.1.0',
-		requires = {{ 'nvim-lua/plenary.nvim' }}
+		requires = { { 'nvim-lua/plenary.nvim',
+			'debugloop/telescope-undo.nvim'
+		} }
 	}
 	use 'hrsh7th/nvim-cmp'
 	use 'hrsh7th/cmp-nvim-lsp'
@@ -51,7 +53,7 @@ return require('packer').startup(function(use)
 
 	use "folke/neodev.nvim"
 	use 'mfussenegger/nvim-dap'
-	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
 	use "jay-babu/mason-nvim-dap.nvim"
 
 	use 'metakirby5/codi.vim'
@@ -64,6 +66,9 @@ return require('packer').startup(function(use)
 			'stevearc/dressing.nvim', -- optional for vim.ui.select
 		},
 	}
+
+	use 'tpope/vim-fugitive'
+
 
 	if packer_bootstrap then
 		require('packer').sync()
