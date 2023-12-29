@@ -14,9 +14,8 @@ local on_attach = function(_, bufnr)
 	vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, {})
 	vim.keymap.set('n', 'gr', require('telescope.builtin').lsp_references, {})
 	vim.keymap.set('n', 'K', vim.lsp.buf.hover, {})
-	vim.keymap.set('n', '<leader>fm', vim.lsp.buf.format, {})
 
-	vim.keymap.set('n', '<space>f', function() vim.lsp.buf.format { async = true } end, bufopts)
+	vim.keymap.set('n', '<leader>fm', function() vim.lsp.buf.format { async = true } end, bufopts)
 
 	vim.api.nvim_set_keymap('n', '<leader>do', '<cmd>lua vim.diagnostic.open_float()<CR>',
 		{ noremap = true, silent = true })
@@ -38,7 +37,7 @@ local servers = {
 	'arduino_language_server',
 	'clangd',
 	'julials',
-	'ltex',
+	--'ltex',
 	'taplo',
 	'vimls',
 	'glslls',
@@ -63,6 +62,16 @@ if not lspconfig.glslls then
 	}
 end
 
+lspconfig.ltex.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		ltex = {
+			language = "es-AR",
+		},
+	},
+}
+
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
 		on_attach = on_attach,
@@ -70,8 +79,9 @@ for _, lsp in ipairs(servers) do
 	}
 end
 
-require('flutter-tools').setup {
+require('flutter-tools').setup { settings = {
 	lsp = {
 		on_attach = on_attach,
 	}
+}
 }

@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
 	use 'stevearc/vim-arduino'
 	use {
 		'nvim-telescope/telescope.nvim',
-		tag = '0.1.0',
+		tag = '0.1.4',
 		requires = { { 'nvim-lua/plenary.nvim',
 			'debugloop/telescope-undo.nvim'
 		} }

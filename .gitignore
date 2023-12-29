@@ -53,3 +53,8 @@ OpenImageIO/
 git/
 fish/fetch.fish
 hotspotrc
+aseprite/
+kwalletrc
+user-dirs.dirs 
+user-dirs.locale
+flutter/

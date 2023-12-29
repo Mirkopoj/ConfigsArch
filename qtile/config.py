@@ -39,10 +39,7 @@ import os
 BAT = psutil.sensors_battery() is not None
 HOME = os.getenv("HOME", default="/home/mirko")
 
-if BAT:
-    KEYS = "es"
-else:
-    KEYS = "latam"
+KEYS = "es"
 
 autostart = [
     "setxkbmap "+KEYS,
