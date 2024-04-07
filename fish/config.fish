@@ -10,6 +10,7 @@ set -gx AWT_TOOLKIT MToolkit
 set -gx JDK_JAVA_OPTIONS '-Dsun.java2d.opengl=true'
 set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
 set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
+set -gx ANDROID_SDK_ROOT '/opt/android-sdk'
 
 #ALIASES
 
@@ -31,6 +32,6 @@ alias server "java -Xmx2G -Xms2G -jar server.jar nogui"
 # >>> mamba initialize >>>
 # !! Contents within this block are managed by 'mamba init' !!
 set -gx MAMBA_EXE "/usr/bin/micromamba"
-set -gx MAMBA_ROOT_PREFIX "/home/mirko/mamba"
-$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+set -gx MAMBA_ROOT_PREFIX '~/.config/mamba'
+$MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
 # <<< mamba initialize <<<

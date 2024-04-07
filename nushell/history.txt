@@ -1,0 +1,87 @@
+ls
+exa
+ls
+cd sspa_LaTeX/
+ls
+nvim main.tex
+cd
+update
+range
+ranger
+clear
+fastfetch
+cd .config/
+cd nushell/
+ls
+vi config.nu
+nvim config.nu
+nvim env.nu
+clear
+cd
+s
+ls
+ls | sort size
+ls | sort
+sort --help
+ls | size | sort
+ls | where size | sort
+ls | where size>0 | sort
+ls | where size > 0 | sort
+ls | where size > 0kb | sort
+ls | sort-by size
+ls | sort-by modified
+ls Placa/
+ls Placa/Pogos/
+clear
+nvim ~/.config/nushell/config.nu
+ls
+nvim ~/.config/nushell/config.nu
+vi main.tex
+alias --help
+nvim ~/.config/nushell/config.nu
+vi main.tex
+nvim ~/.config/nushell/config.nu
+tree
+exa -T
+ls
+update
+clear
+vi ~/.config/nushell/config.nu
+nvim ~/.config/nushell/config.nu
+update
+vi ~/.config/nushell/config.nu
+log
+update
+vi ~/.config/nushell/config.nu
+nvim ~/.config/nushell/config.nu
+update
+vi ~/.config/nushell/config.nu
+alias --help
+vi ~/.config/nushell/config.nu
+nvim ~/.config/nushell/config.nu
+update
+nvim ~/.config/nushell/config.nu
+update
+cd 
+cd TabajFinalIntroIngComp_CalculadoraCasio/
+log
+cd
+cd sspa_LaTeX/
+vi 
+vi ~/.config/nushell/config.nu
+nu
+nu
+ls
+car
+cat
+grep
+clear
+cat main.tex
+bat main.tex
+ls
+exa
+tree
+exa -T
+prompt
+cargo 
+clear

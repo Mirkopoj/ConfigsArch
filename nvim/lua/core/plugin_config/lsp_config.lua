@@ -33,11 +33,9 @@ local lspconfig = require('lspconfig')
 local servers = {
 	'lua_ls',
 	'pyright',
-	'rust_analyzer',
 	'arduino_language_server',
 	'clangd',
 	'julials',
-	--'ltex',
 	'taplo',
 	'vimls',
 	'glslls',
@@ -70,6 +68,32 @@ lspconfig.ltex.setup {
 		ltex = {
 			language = "es-AR",
 		},
+	},
+}
+
+lspconfig.rust_analyzer.setup {
+	on_attach = on_attach,
+	capabilities = capabilities,
+	settings = {
+		['rust-analyzen'] = {
+			cargo = {
+				allFeatures = true,
+				loadOutDirsFromCheck = true,
+				runBuildScripts = true,
+			},
+			checkOnSvae = {
+				allFeatures = true,
+				command = "clippy",
+				extraArgs = {
+					"--",
+					"--no-deps",
+					"-Dclippy::correctness",
+					"-Dclippy::complexity",
+					"-Wclippy::perf",
+					"-Wclippy::pedantic",
+				}
+			}
+		}
 	},
 }
 

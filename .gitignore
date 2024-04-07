@@ -61,3 +61,5 @@ kwalletrc
 user-dirs.dirs 
 user-dirs.locale
 flutter/
+GNU Radio/
+evcxr/
