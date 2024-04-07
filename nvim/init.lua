@@ -1,3 +1,4 @@
+--vim.lsp.set_log_level("debug")
 require("core.keymaps")
 require("core.plugins")
 require("core.plugin_config")

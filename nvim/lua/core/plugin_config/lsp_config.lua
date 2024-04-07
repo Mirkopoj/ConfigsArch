@@ -94,7 +94,7 @@ lspconfig.rust_analyzer.setup {
 				}
 			}
 		}
-	},
+	}
 }
 
 for _, lsp in ipairs(servers) do

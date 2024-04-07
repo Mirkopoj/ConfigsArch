@@ -19,4 +19,4 @@ dap.configurations.cpp[1]["args"] = function ()
 	return t
 end
 
-dap.configurations.python[1]["pythonPath"] = '/usr/bin/python'
+dap.configurations.python[1]["pythonPath"] = '/usr/bin/python3'

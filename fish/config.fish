@@ -12,6 +12,8 @@ set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
 set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 set -gx ANDROID_SDK_ROOT '/opt/android-sdk'
 
+set -gx LIBCLANG_PATH '/home/mirko/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-16.0.0-20230516/esp-clang/lib'
+
 #ALIASES
 
 alias log "git log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold green)(%ar)%C(reset) %C(white)%s%C(reset) %C(dim white)- %an%C(reset)%C(bold yellow)%d%C(reset)' --all"
@@ -23,6 +25,8 @@ alias tree "exa --tree"
 alias cat "bat"
 alias vi "nvim"
 alias update "paru -Sy --noconfirm archlinux-keyring; paru -Syu --sudoloop --noconfirm"
+alias pip "pipx"
+alias clang "/usr/bin/clang"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
@@ -35,3 +39,5 @@ set -gx MAMBA_EXE "/usr/bin/micromamba"
 set -gx MAMBA_ROOT_PREFIX '~/.config/mamba'
 $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
 # <<< mamba initialize <<<
+
+alias conda micromamba

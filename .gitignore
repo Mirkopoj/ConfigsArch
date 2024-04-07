@@ -55,11 +55,14 @@ ranger/plugins/ranger_devicons/
 OpenImageIO/
 git/
 fish/fetch.fish
+<<<<<<< HEAD
 hotspotrc
 aseprite/
 kwalletrc
 user-dirs.dirs 
 user-dirs.locale
 flutter/
+=======
+>>>>>>> 83c765c (Clippy rust)
 GNU Radio/
 evcxr/

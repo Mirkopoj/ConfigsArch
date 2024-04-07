@@ -53,7 +53,7 @@ return require('packer').startup(function(use)
 
 	use "folke/neodev.nvim"
 	use 'mfussenegger/nvim-dap'
-	use { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } }
+	use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" } }
 	use "jay-babu/mason-nvim-dap.nvim"
 
 	use 'metakirby5/codi.vim'
@@ -69,6 +69,9 @@ return require('packer').startup(function(use)
 
 	use 'tpope/vim-fugitive'
 
+	use 'luk400/vim-jukit'
+
+	use 'da-h/AirLatex.vim'
 
 	if packer_bootstrap then
 		require('packer').sync()
