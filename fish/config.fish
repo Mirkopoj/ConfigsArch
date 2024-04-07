@@ -27,3 +27,10 @@ alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
 
 alias server "java -Xmx2G -Xms2G -jar server.jar nogui"
+
+# >>> mamba initialize >>>
+# !! Contents within this block are managed by 'mamba init' !!
+set -gx MAMBA_EXE "/usr/bin/micromamba"
+set -gx MAMBA_ROOT_PREFIX "/home/mirko/mamba"
+$MAMBA_EXE shell hook --shell fish --root-prefix $MAMBA_ROOT_PREFIX | source
+# <<< mamba initialize <<<

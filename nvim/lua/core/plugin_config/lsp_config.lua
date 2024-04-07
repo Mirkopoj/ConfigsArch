@@ -47,6 +47,7 @@ local servers = {
 	'tsserver',
 	'bashls',
 	'zls',
+	'jdtls',
 }
 
 if not lspconfig.glslls then
