@@ -75,13 +75,13 @@ lspconfig.rust_analyzer.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
 	settings = {
-		['rust-analyzen'] = {
+		["rust-analyzer"] = {
 			cargo = {
 				allFeatures = true,
 				loadOutDirsFromCheck = true,
 				runBuildScripts = true,
 			},
-			checkOnSvae = {
+			checkOnSave = {
 				allFeatures = true,
 				command = "clippy",
 				extraArgs = {
@@ -91,7 +91,7 @@ lspconfig.rust_analyzer.setup {
 					"-Dclippy::complexity",
 					"-Wclippy::perf",
 					"-Wclippy::pedantic",
-				}
+				},
 			}
 		}
 	}
