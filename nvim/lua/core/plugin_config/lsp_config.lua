@@ -4,6 +4,8 @@ require("neodev").setup({
 	library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
+vim.lsp.set_log_level("debug")
+
 local on_attach = function(_, bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -38,16 +40,16 @@ local servers = {
 	'julials',
 	'taplo',
 	'vimls',
-	'glslls',
 	'asm_lsp',
 	'html',
 	'cssls',
 	'tsserver',
 	'bashls',
 	'zls',
-	'jdtls',
+	'hls',
 }
 
+--[[
 if not lspconfig.glslls then
 	lspconfig.glslls = {
 		default_config = {
@@ -60,6 +62,7 @@ if not lspconfig.glslls then
 		},
 	}
 end
+]]
 
 lspconfig.ltex.setup {
 	on_attach = on_attach,
@@ -71,6 +74,7 @@ lspconfig.ltex.setup {
 	},
 }
 
+--[[
 lspconfig.rust_analyzer.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -96,6 +100,7 @@ lspconfig.rust_analyzer.setup {
 		}
 	}
 }
+]]
 
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
@@ -109,4 +114,40 @@ require('flutter-tools').setup { settings = {
 		on_attach = on_attach,
 	}
 }
+}
+
+vim.g.rustaceanvim = {
+	-- Plugin configuration
+	tools = {
+	},
+	-- LSP configuration
+	server = {
+		on_attach = on_attach,
+			-- you can also put keymaps in here
+		default_settings = {
+			-- rust-analyzer language server configuration
+			['rust-analyzer'] = {
+				cargo = {
+					allFeatures = true,
+					loadOutDirsFromCheck = true,
+					runBuildScripts = true,
+				},
+				checkOnSave = {
+					allFeatures = true,
+					command = "clippy",
+					extraArgs = {
+						"--",
+						"--no-deps",
+						"-Dclippy::correctness",
+						"-Dclippy::complexity",
+						"-Wclippy::perf",
+						"-Wclippy::pedantic",
+					},
+				}
+			},
+		},
+	},
+	-- DAP configuration
+	dap = {
+	},
 }
