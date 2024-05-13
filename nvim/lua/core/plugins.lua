@@ -81,7 +81,7 @@ return require('packer').startup(function(use)
 		}
 	}
 
-	use 'mrcjkb/rustaceanvim'
+	use {'mrcjkb/rustaceanvim', ft = 'rust'}
 
 	if packer_bootstrap then
 		require('packer').sync()
