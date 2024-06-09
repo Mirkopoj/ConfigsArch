@@ -128,12 +128,12 @@ vim.g.rustaceanvim = {
 			-- rust-analyzer language server configuration
 			['rust-analyzer'] = {
 				cargo = {
-					allFeatures = true,
+					allFeatures = false,
 					loadOutDirsFromCheck = true,
 					runBuildScripts = true,
 				},
 				checkOnSave = {
-					allFeatures = true,
+					allFeatures = false,
 					command = "clippy",
 					extraArgs = {
 						"--",

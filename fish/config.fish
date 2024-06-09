@@ -41,3 +41,5 @@ $MAMBA_EXE shell hook --shell fish --prefix $MAMBA_ROOT_PREFIX | source
 # <<< mamba initialize <<<
 
 alias conda micromamba
+
+zoxide init fish --cmd cd | source

@@ -71,6 +71,8 @@ return require('packer').startup(function(use)
 
 	use 'da-h/AirLatex.vim'
 
+	use 'mrcjkb/rustaceanvim'
+
 	use {
 		'nvim-neotest/neotest',
 		requires = {
@@ -80,8 +82,6 @@ return require('packer').startup(function(use)
 			'nvim-treesitter/nvim-treesitter',
 		}
 	}
-
-	use {'mrcjkb/rustaceanvim', ft = 'rust'}
 
 	if packer_bootstrap then
 		require('packer').sync()
