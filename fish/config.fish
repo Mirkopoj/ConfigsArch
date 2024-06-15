@@ -27,6 +27,7 @@ alias vi "nvim"
 alias update "paru -Sy --noconfirm archlinux-keyring; paru -Syu --sudoloop --noconfirm"
 alias pip "pipx"
 alias clang "/usr/bin/clang"
+alias paru "paru --bottomup"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"

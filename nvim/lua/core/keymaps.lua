@@ -30,7 +30,107 @@ vim.api.nvim_set_keymap('n', '<C-j>', "<C-w>j", { noremap = true, silent = true 
 vim.api.nvim_set_keymap('n', '<C-k>', "<C-w>k", { noremap = true, silent = true });
 vim.api.nvim_set_keymap('n', '<C-l>', "<C-w>l", { noremap = true, silent = true });
 --Resize
-vim.api.nvim_set_keymap('n', '<C-S-l> :vertical resize', "+3<CR>", { noremap = true, silent = true });
-vim.api.nvim_set_keymap('n', '<C-S-h> :vertical resize', "-3<CR>", { noremap = true, silent = true });
-vim.api.nvim_set_keymap('n', '<C-S-k> :resize', "+3<CR>", { noremap = true, silent = true });
-vim.api.nvim_set_keymap('n', '<C-S-j> :resize', "-3<CR>", { noremap = true, silent = true });
+local function is_rightmost_window()
+	local cur_win = vim.api.nvim_get_current_win()
+	local layout = vim.fn.winlayout()
+
+	local function traverse_layout(node)
+		if node[1] == "leaf" then
+			return { node[2] }
+		elseif node[1] == "row" then
+			return traverse_layout(node[2][#node[2]])
+		elseif node[1] == "col" then
+			local rightmost_windows = {}
+			for _, col_node in ipairs(node[2]) do
+				local col_windows = traverse_layout(col_node)
+				for _, win in ipairs(col_windows) do
+					table.insert(rightmost_windows, win)
+				end
+			end
+			return rightmost_windows
+		end
+		return {}
+	end
+
+	local rightmost_windows = traverse_layout(layout)
+
+	for _, win in ipairs(rightmost_windows) do
+		if win == cur_win then
+			return true
+		end
+	end
+	return false
+end
+
+function Resize_left()
+	if is_rightmost_window() then
+		vim.cmd('vertical resize +3')
+	else
+		vim.cmd('vertical resize -3')
+	end
+end
+
+function Resize_right()
+	if is_rightmost_window() then
+		vim.cmd('vertical resize -3')
+	else
+		vim.cmd('vertical resize +3')
+	end
+end
+
+vim.api.nvim_set_keymap('n', '<C-S-h>', ':lua Resize_left()<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-S-l>', ':lua Resize_right()<CR>', { noremap = true, silent = true })
+
+local function is_downmost_window()
+	local cur_win = vim.api.nvim_get_current_win()
+	local layout = vim.fn.winlayout()
+
+	local function traverse_layout(node)
+		if node[1] == "leaf" then
+			return { node[2] }
+		elseif node[1] == "col" then
+			return traverse_layout(node[2][#node[2]])
+		elseif node[1] == "row" then
+			local downmost_windows = {}
+			for _, col_node in ipairs(node[2]) do
+				local col_windows = traverse_layout(col_node)
+				for _, win in ipairs(col_windows) do
+					table.insert(downmost_windows, win)
+				end
+			end
+			return downmost_windows
+		end
+		return {}
+	end
+
+	local downmost_windows = traverse_layout(layout)
+
+	for _, win in ipairs(downmost_windows) do
+		if win == cur_win then
+			return true
+		end
+	end
+	return false
+end
+
+function Resize_up()
+	if is_downmost_window() then
+		vim.cmd('resize +3')
+	else
+		vim.cmd('resize -3')
+	end
+end
+
+function Resize_down()
+	if is_downmost_window() then
+		vim.cmd('resize -3')
+	else
+		vim.cmd('resize +3')
+	end
+end
+
+vim.api.nvim_set_keymap('n', '<C-S-k>', ':lua Resize_up()<CR>', { noremap = true, silent = true });
+vim.api.nvim_set_keymap('n', '<C-S-j>', ':lua Resize_down()<CR>', { noremap = true, silent = true });
+
+--term
+vim.api.nvim_set_keymap('t', '<Esc>', "<C-\\><C-n>", { noremap = true, silent = true });
