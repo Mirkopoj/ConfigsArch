@@ -105,7 +105,7 @@ keys = [
 
     Key([MOD, "shift"], "c", lazy.spawn(terminal+" -e calcurse"), desc="Launch calcurse"),
     Key([MOD, "shift"], "m", lazy.spawn(terminal+" -e "+HOME+"/.config/qtile/neomutt.sh"), desc="Launch neomutt"),
-    Key([MOD, "shift"], "f", lazy.spawn(terminal+" -e ranger"), desc="Launch ranger"),
+    Key([MOD, "shift"], "f", lazy.spawn(terminal+" -e yazi"), desc="Launch yazi"),
     Key([MOD, "shift"], "g", lazy.spawn(terminal+" -e btop"), desc="Launch btop"),
     Key([MOD, "shift"], "d", lazy.spawn(terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash"), desc="Launch btop"),
     Key([MOD, "shift"], "v", lazy.spawn("tabbed -c vimb -e"), desc="Launch vimb"),
@@ -164,8 +164,8 @@ __groups = {
             warp_pointer = False,
         ),
         DropDown(
-            "ranger",
-            terminal+" -e ranger",
+            "yazi",
+            terminal+" -e yazi",
             height = HEIGHT,
             width = 0.8,
             x = 0.1,
@@ -276,7 +276,7 @@ keys.extend([
         lazy.group["ScratchPad"].dropdown_toggle("neomutt")
     ),
     Key([MOD], "f",
-        lazy.group["ScratchPad"].dropdown_toggle("ranger")
+        lazy.group["ScratchPad"].dropdown_toggle("yazi")
     ),
     Key([MOD], "g",
         lazy.group["ScratchPad"].dropdown_toggle("btop")
