@@ -21,7 +21,8 @@ return require('packer').startup(function(use)
 	use 'ryanoasis/vim-devicons'        -- Developer Icons
 	use 'mg979/vim-visual-multi'        -- CTRL + N for multiple cursors
 	use 'nvim-treesitter/nvim-treesitter' --Sintax highlighting
-	use 'kevinhwang91/rnvimr'           --Ranger
+	--use 'kevinhwang91/rnvimr'           --Ranger
+	use 'mikavilpas/yazi.nvim'
 	use 'xuhdev/vim-latex-live-preview'
 	use 'stevearc/vim-arduino'
 	use {
