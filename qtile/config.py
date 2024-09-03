@@ -396,7 +396,6 @@ if BAT:
                         name_transform=lambda name: name.upper(),
                     ),
                     widget.CheckUpdates(colour_have_updates='00ff00'),
-                    # widget.CryptoTicker(currency='USD', crypto = 'ADA'),
                     widget.TextBox(text="", fontsize=25, padding=0, font=BBT),
                     widget.Net(format=":{down} ↓↑ {up}"),
                     widget.Battery(
@@ -434,7 +433,6 @@ else:
                         name_transform=lambda name: name.upper(),
                     ),
                     widget.CheckUpdates(colour_have_updates='00ff00'),
-                    # widget.CryptoTicker(currency='USD', crypto = 'ADA'),
                     widget.TextBox(text="", fontsize=25, padding=0, font=BBT),
                     widget.Net(format=":{down} ↓↑ {up}"),
                     widget.TextBox(text=" 墳", fontsize=25,
