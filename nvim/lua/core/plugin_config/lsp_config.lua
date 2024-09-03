@@ -4,8 +4,6 @@ require("neodev").setup({
 	library = { plugins = { "nvim-dap-ui" }, types = true },
 })
 
-vim.lsp.set_log_level("debug")
-
 local on_attach = function(_, bufnr)
 	local bufopts = { noremap = true, silent = true, buffer = bufnr }
 
@@ -128,12 +126,12 @@ vim.g.rustaceanvim = {
 			-- rust-analyzer language server configuration
 			['rust-analyzer'] = {
 				cargo = {
-					allFeatures = false,
+					allFeatures = true,
 					loadOutDirsFromCheck = true,
 					runBuildScripts = true,
 				},
 				checkOnSave = {
-					allFeatures = false,
+					allFeatures = true,
 					command = "clippy",
 					extraArgs = {
 						"--",
