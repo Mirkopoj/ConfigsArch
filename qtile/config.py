@@ -24,13 +24,13 @@
 # OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 # SOFTWARE.
 
-from typing import List  # noqa: F401
-
+from libqtile import hook
 from libqtile import bar, widget
 from libqtile.layout.max import Max
 from libqtile.layout.columns import Columns
 from libqtile.layout.floating import Floating
-from libqtile.config import Click, Drag, Group, Key, Match, Screen, Match, ScratchPad, DropDown
+from libqtile.config import Click, Drag, Group, Key
+from libqtile.config import Screen, Match, ScratchPad, DropDown
 from libqtile.lazy import lazy
 
 import psutil
@@ -50,9 +50,36 @@ for x in autostart:
     os.system(x)
 
 MOD = "mod4"
-terminal = "alacritty"  #guess_terminal()
+terminal = "alacritty"  # guess_terminal()
 if BAT:
     terminal = terminal+" -o font.size=7.5"
+
+
+def toggle_margin(qtile):
+    new_margin = 0 if qtile.current_layout.margin else 4
+    for window in qtile.current_group.windows:
+        window.group.layout.margin = new_margin
+        window.group.layout.border_width = new_margin
+        window.group.layout_all()
+
+
+def set_opacity(qtile):
+    for window in qtile.current_group.windows:
+        if window == qtile.current_window or window.group.layout.margin != 0:
+            window.opacity = 1
+        else:
+            window.opacity = 0.85
+
+
+@hook.subscribe.client_focus
+def adjust_opacity_on_focus_change(window):
+    set_opacity(window.qtile)
+
+
+@hook.subscribe.startup_once
+def set_initial_opacity():
+    lazy.function(set_opacity)
+
 
 keys = [
     # A list of available commands that can be bound to keys can be found
@@ -62,18 +89,25 @@ keys = [
     Key([MOD], "l", lazy.layout.right(), desc="Move focus to right"),
     Key([MOD], "j", lazy.layout.down(), desc="Move focus down"),
     Key([MOD], "k", lazy.layout.up(), desc="Move focus up"),
-    Key([MOD], "space", lazy.layout.next(), desc="Move window focus to other window"),
+    Key([MOD], "space", lazy.layout.next(),
+        desc="Move window focus to other window"),
     # Move windows between left/right columns or move up/down in current stack.
     # Moving out of range in Columns layout will create new column.
-    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(), desc="Move window to the left"),
-    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(), desc="Move window to the right"),
-    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(), desc="Move window down"),
+    Key([MOD, "shift"], "h", lazy.layout.shuffle_left(),
+        desc="Move window to the left"),
+    Key([MOD, "shift"], "l", lazy.layout.shuffle_right(),
+        desc="Move window to the right"),
+    Key([MOD, "shift"], "j", lazy.layout.shuffle_down(),
+        desc="Move window down"),
     Key([MOD, "shift"], "k", lazy.layout.shuffle_up(), desc="Move window up"),
     # Grow windows. If current window is on the edge of screen and direction
     # will be to screen edge - window would shrink.
-    Key([MOD, "control"], "h", lazy.layout.grow_left(), desc="Grow window to the left"),
-    Key([MOD, "control"], "l", lazy.layout.grow_right(), desc="Grow window to the right"),
-    Key([MOD, "control"], "j", lazy.layout.grow_down(), desc="Grow window down"),
+    Key([MOD, "control"], "h", lazy.layout.grow_left(),
+        desc="Grow window to the left"),
+    Key([MOD, "control"], "l", lazy.layout.grow_right(),
+        desc="Grow window to the right"),
+    Key([MOD, "control"], "j", lazy.layout.grow_down(),
+        desc="Grow window down"),
     Key([MOD, "control"], "k", lazy.layout.grow_up(), desc="Grow window up"),
     Key([MOD], "n", lazy.layout.normalize(), desc="Reset all window sizes"),
     # Toggle between split and unsplit sides of stack.
@@ -89,35 +123,51 @@ keys = [
     Key([MOD], "Return", lazy.spawn(terminal), desc="Launch terminal"),
     # Toggle between different layouts as defined below
     Key([MOD], "Tab", lazy.next_layout(), desc="Toggle between layouts"),
+    Key([MOD, "shift"], "Tab", lazy.function(toggle_margin),
+        desc="Toggle layout margin"),
     Key([MOD], "w", lazy.window.kill(), desc="Kill focused window"),
     Key([MOD, "control"], "r", lazy.reload_config(), desc="Reload the config"),
     Key([MOD, "control"], "q", lazy.shutdown(), desc="Shutdown Qtile"),
 
     Key([MOD], "r", lazy.spawn("rofi -show drun"), desc="Program Launcher"),
-    Key([MOD], "p", lazy.spawn(HOME+"/.config/qtile/power.sh"), desc="Program Launcher"),
-    Key([MOD, "shift"], "w", lazy.spawn(HOME+"/.config/qtile/wifi.sh"), desc="Program Launcher"),
-    Key(["mod1"], "Tab", lazy.spawn("rofi -show window"), desc="Move between windows"),
+    Key([MOD], "p", lazy.spawn(HOME+"/.config/qtile/power.sh"),
+        desc="Program Launcher"),
+    Key([MOD, "shift"], "w", lazy.spawn(
+        HOME+"/.config/qtile/wifi.sh"), desc="Program Launcher"),
+    Key(["mod1"], "Tab", lazy.spawn("rofi -show window"),
+        desc="Move between windows"),
     Key([MOD, "shift"], "s", lazy.spawn("flameshot gui"), desc="Screeshots"),
 
     Key([], "XF86AudioMute",        lazy.spawn("amixer -q set Master toggle")),
-    Key([], "XF86AudioLowerVolume", lazy.spawn("amixer set Master 1%- unmute")),
-    Key([], "XF86AudioRaiseVolume", lazy.spawn("amixer set Master 1%+ unmute")),
+    Key([], "XF86AudioLowerVolume",
+        lazy.spawn("amixer set Master 1%- unmute")),
+    Key([], "XF86AudioRaiseVolume",
+        lazy.spawn("amixer set Master 1%+ unmute")),
 
-    Key([MOD, "shift"], "c", lazy.spawn(terminal+" -e calcurse"), desc="Launch calcurse"),
-    Key([MOD, "shift"], "m", lazy.spawn(terminal+" -e "+HOME+"/.config/qtile/neomutt.sh"), desc="Launch neomutt"),
-    Key([MOD, "shift"], "f", lazy.spawn(terminal+" -e yazi"), desc="Launch yazi"),
-    Key([MOD, "shift"], "g", lazy.spawn(terminal+" -e btop"), desc="Launch btop"),
-    Key([MOD, "shift"], "d", lazy.spawn(terminal+" --config-file "+HOME+"/.config/alacritty/alacritty_Iosevka.yml -e flash"), desc="Launch btop"),
-    Key([MOD, "shift"], "v", lazy.spawn("tabbed -c vimb -e"), desc="Launch vimb"),
-    Key([MOD, "shift"], "a", lazy.spawn("pavucontrol"), desc="Launch audio control"),
+    Key([MOD, "shift"], "c", lazy.spawn(
+        terminal+" -e calcurse"), desc="Launch calcurse"),
+    Key([MOD, "shift"], "m", lazy.spawn(terminal+" -e "+HOME +
+        "/.config/qtile/neomutt.sh"), desc="Launch neomutt"),
+    Key([MOD, "shift"], "f", lazy.spawn(
+        terminal+" -e yazi"), desc="Launch yazi"),
+    Key([MOD, "shift"], "g", lazy.spawn(
+        terminal+" -e btop"), desc="Launch btop"),
+    Key([MOD, "shift"], "d", lazy.spawn(terminal+" --config-file "+HOME +
+        "/.config/alacritty/alacritty_Iosevka.yml -e flash"),
+        desc="Launch btop"),
+    Key([MOD, "shift"], "v", lazy.spawn(
+        "tabbed -c vimb -e"), desc="Launch vimb"),
+    Key([MOD, "shift"], "a", lazy.spawn(
+        "pavucontrol"), desc="Launch audio control"),
 
     Key([MOD], "t", lazy.window.toggle_floating(), desc='Toggle floating')
 ]
 
 if BAT:
     keys.extend([
-        Key([MOD], "F2", lazy.spawn("/home/mirko/.config/qtile/toggle_touchpad.fish")),
-        ])
+        Key([MOD], "F2", lazy.spawn(
+            "/home/mirko/.config/qtile/toggle_touchpad.fish")),
+    ])
 
 if BAT:
     HEIGHT = 0.72
@@ -128,118 +178,120 @@ else:
 
 __groups = {
     1: Group(""),
-    2: Group("爵",matches=[Match(wm_class=["Brave"  ])]),
-    3: Group("", matches=[Match(wm_class=["kicad"    ])]),
+    2: Group("爵", matches=[Match(wm_class=["Brave"])]),
+    3: Group("", matches=[Match(wm_class=["kicad"])]),
     4: Group("", matches=[Match(wm_class=["mplab_ide"])]),
     0: Group(""),
     5: ScratchPad("ScratchPad", [
         DropDown(
             "term",
             terminal,
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "calcurse",
             terminal+" -e calcurse",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "neomutt",
             terminal+" -e "+HOME+"/.config/qtile/neomutt.sh",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "yazi",
             terminal+" -e yazi",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "btop",
             terminal+" -e btop",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "vimb",
             "tabbed -c vimb -e",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "qalculate",
             "qalculate-gtk",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "flash",
             terminal+" -e flash",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "pavucontrol",
             "pavucontrol",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
         DropDown(
             "update",
             terminal+" -e "+HOME+"/.config/qtile/update.sh",
-            height = HEIGHT,
-            width = 0.8,
-            x = 0.1,
-            y = Y,
-            on_focus_lost_hide = True,
-            warp_pointer = False,
+            height=HEIGHT,
+            width=0.8,
+            x=0.1,
+            y=Y,
+            on_focus_lost_hide=True,
+            warp_pointer=False,
         ),
     ]),
-} 
+}
 
 groups = [__groups[i] for i in __groups]
 
+
 def get_group_key(name):
     return [k for k, g in __groups.items() if g.name == name][0]
+
 
 for i in groups:
     keys.extend(
@@ -251,12 +303,13 @@ for i in groups:
                 lazy.group[i.name].toscreen(),
                 desc="Switch to group {}".format(i.name),
             ),
-            # mod1 + shift + letter of group = switch to & move focused window to group
+            # mod1 + shift + letter of group = switch to & move focused window
             Key(
                 [MOD, "shift"],
                 str(get_group_key(i.name)),
                 lazy.window.togroup(i.name, switch_group=True),
-                desc="Switch to & move focused window to group {}".format(i.name),
+                desc="Switch to & move focused window to group {}".format(
+                    i.name),
             ),
             # Or, use below if you prefer not to switch to that group.
             # # mod1 + shift + letter of group = move focused window to group
@@ -268,39 +321,39 @@ for i in groups:
 keys.extend([
     Key([MOD], "s",
         lazy.group["ScratchPad"].dropdown_toggle("term")
-    ),
+        ),
     Key([MOD], "c",
         lazy.group["ScratchPad"].dropdown_toggle("calcurse")
-    ),
+        ),
     Key([MOD], "m",
         lazy.group["ScratchPad"].dropdown_toggle("neomutt")
-    ),
+        ),
     Key([MOD], "f",
         lazy.group["ScratchPad"].dropdown_toggle("yazi")
-    ),
+        ),
     Key([MOD], "g",
         lazy.group["ScratchPad"].dropdown_toggle("btop")
-    ),
+        ),
     Key([MOD], "v",
         lazy.group["ScratchPad"].dropdown_toggle("vimb")
-    ),
+        ),
     Key([MOD], "q",
         lazy.group["ScratchPad"].dropdown_toggle("qalculate")
-    ),
+        ),
     Key([MOD], "d",
         lazy.group["ScratchPad"].dropdown_toggle("flash")
-    ),
+        ),
     Key([MOD], "a",
         lazy.group["ScratchPad"].dropdown_toggle("pavucontrol")
-    ),
+        ),
     Key([MOD], "u",
         lazy.group["ScratchPad"].dropdown_toggle("update")
-    ),
+        ),
 ])
 
 layouts = [
-    #layout.Columns(border_focus_stack=["#d75f5f", "#8f3d3d"], border_width=4),
-    Columns(border_focus="#a9ded7", border_normal="#4f6b67", border_width=4, border_on_single=True, margin=4),
+    Columns(border_focus="#a9ded7", border_normal="#4f6b67",
+            border_width=4, border_on_single=True, margin=4),
     Max(border_focus="#a9ded7", border_width=4, margin=4),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
@@ -315,12 +368,12 @@ layouts = [
     # layout.Zoomy(),.
 ]
 
-BBT ="BigBlue_Terminal_437TT Nerd Font Mono"
+BBT = "BigBlue_Terminal_437TT Nerd Font Mono"
 
 widget_defaults = dict(
-    #font="Iosevka",
+    # font="Iosevka",
     font="Monoid Nerd Font Bold",
-    #font=os.getenv("FONT",default="BigBlue_Terminal_437TT Nerd Font Mono"),
+    # font=os.getenv("FONT",default="BigBlue_Terminal_437TT Nerd Font Mono"),
     fontsize=15,
     padding=6,
 )
@@ -331,7 +384,9 @@ if BAT:
         Screen(
             bottom=bar.Bar(
                 [
-                    widget.GroupBox(this_current_screen_border='a9ded7',fontsize = 25,font=BBT),
+                    widget.GroupBox(
+                        this_current_screen_border='a9ded7', fontsize=25,
+                        font=BBT),
                     widget.Prompt(),
                     widget.WindowName(),
                     widget.Chord(
@@ -341,8 +396,8 @@ if BAT:
                         name_transform=lambda name: name.upper(),
                     ),
                     widget.CheckUpdates(colour_have_updates='00ff00'),
-                    #widget.CryptoTicker(currency='USD', crypto = 'ADA'),
-                    widget.TextBox(text="", fontsize = 25, padding = 0,font=BBT),
+                    # widget.CryptoTicker(currency='USD', crypto = 'ADA'),
+                    widget.TextBox(text="", fontsize=25, padding=0, font=BBT),
                     widget.Net(format=":{down} ↓↑ {up}"),
                     widget.Battery(
                         discharge_char='',
@@ -350,7 +405,8 @@ if BAT:
                         empty_char='',
                         full_char='',
                         format=' {char}: {percent:2.0%}'),
-                    widget.TextBox(text=" 墳", fontsize = 25, padding = 0,font=BBT),
+                    widget.TextBox(text=" 墳", fontsize=25,
+                                   padding=0, font=BBT),
                     widget.Volume(fmt=': {}'),
                     widget.Systray(),
                     widget.Clock(format=" %H:%M %a %d/%m/%Y %p"),
@@ -366,7 +422,9 @@ else:
         Screen(
             bottom=bar.Bar(
                 [
-                    widget.GroupBox(this_current_screen_border='a9ded7',fontsize = 25,font=BBT),
+                    widget.GroupBox(
+                        this_current_screen_border='a9ded7', fontsize=25,
+                        font=BBT),
                     widget.Prompt(),
                     widget.WindowName(),
                     widget.Chord(
@@ -376,10 +434,11 @@ else:
                         name_transform=lambda name: name.upper(),
                     ),
                     widget.CheckUpdates(colour_have_updates='00ff00'),
-                    #widget.CryptoTicker(currency='USD', crypto = 'ADA'),
-                    widget.TextBox(text="", fontsize = 25, padding = 0,font=BBT),
+                    # widget.CryptoTicker(currency='USD', crypto = 'ADA'),
+                    widget.TextBox(text="", fontsize=25, padding=0, font=BBT),
                     widget.Net(format=":{down} ↓↑ {up}"),
-                    widget.TextBox(text=" 墳", fontsize = 25, padding = 0,font=BBT),
+                    widget.TextBox(text=" 墳", fontsize=25,
+                                   padding=0, font=BBT),
                     widget.Volume(fmt=': {}'),
                     widget.Systray(),
                     widget.Clock(format=" %H:%M %a %d/%m/%Y %p"),
@@ -394,8 +453,10 @@ else:
 
 # Drag floating layouts.
 mouse = [
-    Drag([MOD], "Button1", lazy.window.set_position_floating(), start=lazy.window.get_position()),
-    Drag([MOD], "Button3", lazy.window.set_size_floating(), start=lazy.window.get_size()),
+    Drag([MOD], "Button1", lazy.window.set_position_floating(),
+         start=lazy.window.get_position()),
+    Drag([MOD], "Button3", lazy.window.set_size_floating(),
+         start=lazy.window.get_size()),
     Click([MOD], "Button2", lazy.window.bring_to_front()),
 ]
 
@@ -406,7 +467,7 @@ bring_front_click = False
 cursor_warp = False
 floating_layout = Floating(
     float_rules=[
-        # Run the utility of `xprop` to see the wm class and name of an X client.
+        # Run the utility of `xprop` to see the wm class and name of X client.
         *Floating.default_float_rules,
         Match(wm_class="confirmreset"),  # gitk
         Match(wm_class="makebranch"),  # gitk

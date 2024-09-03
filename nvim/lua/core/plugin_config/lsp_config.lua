@@ -34,7 +34,7 @@ local lspconfig = require('lspconfig')
 
 local servers = {
 	'lua_ls',
-	'pyright',
+	'pylsp',
 	'arduino_language_server',
 	'clangd',
 	'julials',
