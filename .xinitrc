@@ -49,7 +49,7 @@ if [ -d /etc/X11/xinit/xinitrc.d ] ; then
 fi
 
 redshift -l -41.14557:-71.30822 &
-picom &
+picom --backend glx &
 xsettingsd &
 xrandr --output HDMI-A-0 --rotate left 
 xrandr --output DisplayPort-1 --mode 2560x1440 --refresh 75.00
