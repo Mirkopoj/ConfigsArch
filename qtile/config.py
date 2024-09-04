@@ -55,11 +55,24 @@ if BAT:
     terminal = terminal+" -o font.size=7.5"
 
 
+border_width = 2
+margin = 6
+
+
 def toggle_margin(qtile):
-    new_margin = 0 if qtile.current_layout.margin else 4
+    new_margin = margin
+    new_border = border_width
+    border_radius = 12
+    if qtile.current_layout.margin:
+        new_margin = 0
+        new_border = 0
+        border_radius = 0
+    os.system("sed -i \"s/corner-radius = " + str(12-border_radius) +
+              ";/corner-radius = " + str(border_radius) +
+              ";/\" "+HOME+"/.config/picom.conf")
     for window in qtile.current_group.windows:
         window.group.layout.margin = new_margin
-        window.group.layout.border_width = new_margin
+        window.group.layout.border_width = new_border
         window.group.layout_all()
 
 
@@ -353,8 +366,8 @@ keys.extend([
 
 layouts = [
     Columns(border_focus="#a9ded7", border_normal="#4f6b67",
-            border_width=4, border_on_single=True, margin=4),
-    Max(border_focus="#a9ded7", border_width=4, margin=4),
+            border_width=border_width, border_on_single=True, margin=margin),
+    Max(border_focus="#a9ded7", border_width=border_width, margin=margin),
     # Try more layouts by unleashing below layouts.
     # layout.Stack(num_stacks=2),
     # layout.Bsp(),
@@ -365,7 +378,7 @@ layouts = [
     # layout.Tile(),
     # layout.TreeTab(),
     # layout.VerticalTile(),
-    # layout.Zoomy(),.
+    # layout.Zoomy(),
 ]
 
 BBT = "BigBlue_Terminal_437TT Nerd Font Mono"
@@ -476,9 +489,9 @@ floating_layout = Floating(
     ],
     border_focus="#a9ded7",
     border_normal="#4f6b67",
-    border_width=4,
+    border_width=border_width,
     border_on_single=True,
-    margin=4,
+    margin=margin,
 )
 auto_fullscreen = True
 focus_on_window_activation = "smart"
