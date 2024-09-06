@@ -28,6 +28,7 @@ alias update "paru -Sy --noconfirm archlinux-keyring; paru -Syu --sudoloop --noc
 alias pip "pipx"
 alias clang "/usr/bin/clang"
 alias paru "paru --bottomup"
+alias ip "ip -c"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"
