@@ -41,7 +41,7 @@ local servers = {
 	'asm_lsp',
 	'html',
 	'cssls',
-	'tsserver',
+	'ts_ls',
 	'bashls',
 	'zls',
 	'hls',
