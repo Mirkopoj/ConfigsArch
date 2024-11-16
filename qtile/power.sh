@@ -5,7 +5,7 @@ LEVEL="$(upower -i $(upower -e | grep 'BAT') | grep -E "percentage" | awk '{prin
 if [ $LEVEL -le 100 ]; then
 	rofi_theme="34%;"
 else
-	rofi_theme="30%;"
+	rofi_theme="31%;"
 fi
 chosen=$(printf "  Power Off\n  Restart\n  Lock" | rofi -dmenu -i -theme-str '@import "power.rasi"' -theme-str "window { width: "$rofi_theme" }")
 

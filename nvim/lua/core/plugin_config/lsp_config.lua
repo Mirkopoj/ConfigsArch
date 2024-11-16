@@ -72,34 +72,6 @@ lspconfig.ltex.setup {
 	},
 }
 
---[[
-lspconfig.rust_analyzer.setup {
-	on_attach = on_attach,
-	capabilities = capabilities,
-	settings = {
-		["rust-analyzer"] = {
-			cargo = {
-				allFeatures = true,
-				loadOutDirsFromCheck = true,
-				runBuildScripts = true,
-			},
-			checkOnSave = {
-				allFeatures = true,
-				command = "clippy",
-				extraArgs = {
-					"--",
-					"--no-deps",
-					"-Dclippy::correctness",
-					"-Dclippy::complexity",
-					"-Wclippy::perf",
-					"-Wclippy::pedantic",
-				},
-			}
-		}
-	}
-}
-]]
-
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup {
 		on_attach = on_attach,

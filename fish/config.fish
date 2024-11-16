@@ -29,6 +29,7 @@ alias pip "pipx"
 alias clang "/usr/bin/clang"
 alias paru "paru --bottomup"
 alias ip "ip -c"
+alias startx "startx &> /dev/null"
 
 alias sshOn "sudo systemctl start sshd"
 alias sshOff "sudo systemctl stop sshd"

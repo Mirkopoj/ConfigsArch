@@ -39,11 +39,11 @@ import os
 BAT = psutil.sensors_battery() is not None
 HOME = os.getenv("HOME", default="/home/mirko")
 
-KEYS = "es"
+KEYS = "latam"
 
 autostart = [
     "setxkbmap "+KEYS,
-    "feh --bg-scale "+HOME+"/.config/qtile/Fondo.jpg  --no-xinerama",
+    "feh --bg-fill "+HOME+"/.config/qtile/Fondo.jpg  --no-xinerama",
 ]
 
 for x in autostart:
@@ -53,7 +53,6 @@ MOD = "mod4"
 terminal = "alacritty"  # guess_terminal()
 if BAT:
     terminal = terminal+" -o font.size=7.5"
-
 
 border_width = 2
 margin = 6
@@ -151,11 +150,16 @@ keys = [
         desc="Move between windows"),
     Key([MOD, "shift"], "s", lazy.spawn("flameshot gui"), desc="Screeshots"),
 
-    Key([], "XF86AudioMute",        lazy.spawn("amixer -q set Master toggle")),
+    Key([], "XF86AudioMute",    lazy.spawn("amixer -q set Master toggle")),
     Key([], "XF86AudioLowerVolume",
         lazy.spawn("amixer set Master 1%- unmute")),
     Key([], "XF86AudioRaiseVolume",
         lazy.spawn("amixer set Master 1%+ unmute")),
+
+    Key([], "XF86MonBrightnessUp",
+        lazy.spawn("brillo -A 1")),
+    Key([], "XF86MonBrightnessDown",
+        lazy.spawn("brillo -U 1")),
 
     Key([MOD, "shift"], "c", lazy.spawn(
         terminal+" -e calcurse"), desc="Launch calcurse"),
@@ -191,7 +195,7 @@ else:
 
 __groups = {
     1: Group(""),
-    2: Group("爵", matches=[Match(wm_class=["Brave"])]),
+    2: Group("󰖟", matches=[Match(wm_class=["Brave"])]),
     3: Group("", matches=[Match(wm_class=["kicad"])]),
     4: Group("", matches=[Match(wm_class=["mplab_ide"])]),
     0: Group(""),
@@ -381,7 +385,8 @@ layouts = [
     # layout.Zoomy(),
 ]
 
-BBT = "BigBlue_Terminal_437TT Nerd Font Mono"
+BBT = "BigBlueTerm437 Nerd Font Mono"
+# BBT = "BigBlue_Terminal_437TT Nerd Font Mono"
 
 widget_defaults = dict(
     # font="Iosevka",
@@ -412,12 +417,12 @@ if BAT:
                     widget.TextBox(text="", fontsize=25, padding=0, font=BBT),
                     widget.Net(format=":{down} ↓↑ {up}"),
                     widget.Battery(
-                        discharge_char='',
-                        charge_char='',
-                        empty_char='',
-                        full_char='',
+                        discharge_char='󰁿',
+                        charge_char='󰂄',
+                        empty_char='󰁺',
+                        full_char='󰁹',
                         format=' {char}: {percent:2.0%}'),
-                    widget.TextBox(text=" 墳", fontsize=25,
+                    widget.TextBox(text=" ", fontsize=25,
                                    padding=0, font=BBT),
                     widget.Volume(fmt=': {}'),
                     widget.Systray(),
