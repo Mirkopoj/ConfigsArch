@@ -5,6 +5,7 @@ end
 set -gx GPG_TTY (tty)
 set -gx EDITOR nvim
 set -gx VISUAL nvim
+set -gx TERMINAL alacritty
 set -gx _JAVA_AWT_WM_NONREPARENTING 1
 set -gx AWT_TOOLKIT MToolkit
 set -gx JDK_JAVA_OPTIONS '-Dsun.java2d.opengl=true'
