@@ -1,0 +1,5 @@
+[plugin]
+deps = [{ use = "Reledia/glow", rev = "388e847" }, { use = "Sonico98/exifaudio", rev = "855ff05" }, { use = "Reledia/hexyl", rev = "ccc0a4a" }, { use = "Reledia/miller", rev = "40e0265" }, { use = "ndtoan96/ouch", rev = "db14883" }]
+
+[flavor]
+deps = []

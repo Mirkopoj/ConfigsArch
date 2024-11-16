@@ -2,22 +2,22 @@ local M = {}
 
 function M:peek()
 	local child = Command("mlr")
-			:args({
-				"--ifs",
-				";",
-				"--icsv",
-				"--opprint",
-				"-C",
-				"--key-color",
-				"darkcyan",
-				"--value-color",
-				"grey70",
-				"cat",
-				tostring(self.file.url),
-			})
-			:stdout(Command.PIPED)
-			:stderr(Command.PIPED)
-			:spawn()
+		 :args({
+			 "--ifs",
+			 ";",
+			 "--icsv",
+			 "--opprint",
+			 "-C",
+			 "--key-color",
+			 "darkcyan",
+			 "--value-color",
+			 "grey70",
+			 "cat",
+			 tostring(self.file.url),
+		 })
+		 :stdout(Command.PIPED)
+		 :stderr(Command.PIPED)
+		 :spawn()
 
 	local limit = self.area.h
 	local i, lines = 0, ""
@@ -37,13 +37,10 @@ function M:peek()
 
 	child:start_kill()
 	if self.skip > 0 and i < self.skip + limit then
-		ya.manager_emit(
-			"peek",
-			{ tostring(math.max(0, i - limit)), only_if = tostring(self.file.url), upper_bound = "" }
-		)
+		ya.manager_emit("peek", { math.max(0, i - limit), only_if = self.file.url, upper_bound = true })
 	else
 		lines = lines:gsub("\t", string.rep(" ", PREVIEW.tab_size))
-		ya.preview_widgets(self, { ui.Paragraph.parse(self.area, lines) })
+		ya.preview_widgets(self, { ui.Text.parse(lines):area(self.area) })
 	end
 end
 
