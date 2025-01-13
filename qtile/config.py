@@ -62,16 +62,21 @@ def toggle_margin(qtile):
     new_margin = margin
     new_border = border_width
     border_radius = 12
+    border_on_single = True
     if qtile.current_layout.margin:
         new_margin = 0
         new_border = 0
         border_radius = 0
+        border_on_single = False
     os.system("sed -i \"s/corner-radius = " + str(12-border_radius) +
               ";/corner-radius = " + str(border_radius) +
               ";/\" "+HOME+"/.config/picom.conf")
     for window in qtile.current_group.windows:
         window.group.layout.margin = new_margin
         window.group.layout.border_width = new_border
+        window.group.layout.single_border_width = new_border
+        window.group.layout.border_on_single = border_on_single
+        window.group.layout.margin_on_single = new_margin
         window.group.layout_all()
 
 
