@@ -47,21 +47,6 @@ local servers = {
 	'hls',
 }
 
---[[
-if not lspconfig.glslls then
-	lspconfig.glslls = {
-		default_config = {
-			cmd = { '/usr/local/bin/glslls', '--stdin' },
-			filetypes = { 'glsl', 'fs', 'vs' },
-			root_dir = function(fname)
-				return lspconfig.util.find_git_ancestor(fname)
-			end,
-			settings = {},
-		},
-	}
-end
-]]
-
 lspconfig.ltex.setup {
 	on_attach = on_attach,
 	capabilities = capabilities,
@@ -102,6 +87,9 @@ vim.g.rustaceanvim = {
 					loadOutDirsFromCheck = true,
 					runBuildScripts = true,
 				},
+				procMacro = {
+					enable = true,
+				},
 				checkOnSave = {
 					allFeatures = true,
 					command = "clippy",
@@ -113,7 +101,7 @@ vim.g.rustaceanvim = {
 						"-Wclippy::perf",
 						"-Wclippy::pedantic",
 					},
-				}
+				},
 			},
 		},
 	},
