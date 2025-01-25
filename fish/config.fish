@@ -13,7 +13,10 @@ set -gx _JAVA_OPTIONS '-Dawt.useSystemAAFontSettings=on'
 set -gx DEBUGINFOD_URLS 'https://debuginfod.archlinux.org'
 set -gx ANDROID_SDK_ROOT '/opt/android-sdk'
 
-set -gx LIBCLANG_PATH '/home/mirko/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-16.0.0-20230516/esp-clang/lib'
+set -gx LIBCLANG_PATH '/home/mirko/.rustup/toolchains/esp/xtensa-esp32-elf-clang/esp-18.1.2_20240912/esp-clang/lib'
+if not contains "/home/mirko/.rustup/toolchains/esp/xtensa-esp-elf/esp-14.2.0_20240906/xtensa-esp-elf/bin" $PATH
+	set -gx PATH '/home/mirko/.rustup/toolchains/esp/xtensa-esp-elf/esp-14.2.0_20240906/xtensa-esp-elf/bin' $PATH
+end
 
 #ALIASES
 
