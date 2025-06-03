@@ -1,5 +1,27 @@
-[plugin]
-deps = [{ use = "Reledia/glow", rev = "388e847" }, { use = "Sonico98/exifaudio", rev = "855ff05" }, { use = "Reledia/hexyl", rev = "ccc0a4a" }, { use = "Reledia/miller", rev = "40e0265" }, { use = "ndtoan96/ouch", rev = "db14883" }]
+[[plugin.deps]]
+use = "Reledia/glow"
+rev = "388e847"
+hash = ""
+
+[[plugin.deps]]
+use = "Sonico98/exifaudio"
+rev = "855ff05"
+hash = ""
+
+[[plugin.deps]]
+use = "Reledia/hexyl"
+rev = "ccc0a4a"
+hash = ""
+
+[[plugin.deps]]
+use = "Reledia/miller"
+rev = "40e0265"
+hash = ""
+
+[[plugin.deps]]
+use = "ndtoan96/ouch"
+rev = "db14883"
+hash = ""
 
 [flavor]
 deps = []
